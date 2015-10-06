@@ -12,6 +12,8 @@ import kru.util.Tuple;
 
 public class HashMap<K, V> implements Map<K, V> {
 	
+	/* @Todo: Well you forgot that you need to resize the hashtable as more and more items arrive */
+	
 	private static final int DEFAULT_INITIAL_CAPACITY = 32;
 	private int initialCapacity;
 	

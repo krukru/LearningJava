@@ -12,9 +12,10 @@ import kru.util.Tuple;
 
 public class HashMap<K, V> implements Map<K, V> {
 
-  /* @Todo: Well you forgot that you need to resize the hashtable as more and more items arrive */
-
   private static final int DEFAULT_INITIAL_CAPACITY = 32;
+  private static final double RESIZE_THRESHOLD = 0.8;
+  private static final int RESIZE_FACTOR = 2;
+
   private int initialCapacity;
 
   private int size = 0;
@@ -131,7 +132,23 @@ public class HashMap<K, V> implements Map<K, V> {
         this.hashtable[bucketIndex].add(newEntry);
       }
     }
+    if (this.requiresResize()) {
+      this.resize();
+    }
     return oldValue;
+  }
+
+  private void resize() {
+    int newCapacity = this.getCurrentCapacity() * this.RESIZE_FACTOR;
+    Bucket[] newHashtable = (Bucket[]) Array.newInstance(Bucket.class, newCapacity);
+    for (int i = 0; i < this.hashtable.length; i++) {
+      newHashtable[i] = this.hashtable[i];
+    }
+    this.hashtable = newHashtable;
+  }
+
+  private boolean requiresResize() {
+    return this.size > this.getCurrentCapacity() * this.RESIZE_THRESHOLD;
   }
 
   @Override

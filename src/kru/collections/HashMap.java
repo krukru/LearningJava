@@ -77,7 +77,7 @@ public class HashMap<K, V> implements Map<K, V> {
   }
 
   @Override
-  public Set<java.util.Map.Entry<K, V>> entrySet() {
+  public Set<Map.Entry<K, V>> entrySet() {
     throw new NotImplementedException("Real sorry bro, maybe next version");
   }
 
@@ -96,15 +96,6 @@ public class HashMap<K, V> implements Map<K, V> {
     return result;
   }
 
-  private int getBucketIndex(Object key) {
-    return key.hashCode() % this.getCurrentCapacity();
-  }
-
-  private Bucket getBucketForKey(Object key) {
-    Bucket result = this.hashtable[getBucketIndex(key)];
-    return result;
-  }
-
   @Override
   public boolean isEmpty() {
     return (this.size == 0);
@@ -118,8 +109,9 @@ public class HashMap<K, V> implements Map<K, V> {
   @Override
   public V put(K key, V value) {
     V oldValue = null;
-    if (key == null)
-      throw new IllegalArgumentException("No null keys allowed");
+    if (key == null) {
+      throw new IllegalArgumentException("No null keys allowed");      
+    }
     Entry newEntry = new Entry(key, value);
     int bucketIndex = this.getBucketIndex(key);
     Bucket bucket = this.hashtable[bucketIndex];
@@ -127,6 +119,7 @@ public class HashMap<K, V> implements Map<K, V> {
       Bucket newBucket = new Bucket();
       newBucket.add(newEntry);
       this.hashtable[bucketIndex] = newBucket;
+      this.size += 1;
     } else {
       /* Well, we need to check if a value already exists */
       boolean itemReplaced = false;
@@ -139,6 +132,7 @@ public class HashMap<K, V> implements Map<K, V> {
         }
       }
       if (itemReplaced == false) {
+        this.size += 1;
         this.hashtable[bucketIndex].add(newEntry);
       }
     }
@@ -159,6 +153,7 @@ public class HashMap<K, V> implements Map<K, V> {
     Bucket bucket = this.hashtable[bucketIndex];
     if (bucket != null) {
       bucket.remove(key);
+      this.size -= 1;
     }
     return result;
   }
@@ -171,6 +166,15 @@ public class HashMap<K, V> implements Map<K, V> {
   @Override
   public Collection<V> values() {
     throw new NotImplementedException();
+  }
+
+  private int getBucketIndex(Object key) {
+    return key.hashCode() % this.getCurrentCapacity();
+  }
+
+  private Bucket getBucketForKey(Object key) {
+    Bucket result = this.hashtable[getBucketIndex(key)];
+    return result;
   }
 
   private class Entry implements Map.Entry<K, V> {

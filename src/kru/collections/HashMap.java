@@ -1,5 +1,6 @@
 package kru.collections;
 
+import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -31,7 +32,8 @@ public class HashMap<K, V> implements Map<K, V> {
 
   @SuppressWarnings("unchecked")
   private void initHashtable(int hashtableSize) {
-    this.hashtable = (Bucket[])java.lang.reflect.Array.newInstance(Bucket.class, hashtableSize);
+    this.size = 0;
+    this.hashtable = (Bucket[]) Array.newInstance(Bucket.class, hashtableSize);
   }
 
   private int getCurrentCapacity() {
@@ -40,13 +42,12 @@ public class HashMap<K, V> implements Map<K, V> {
 
   @Override
   public void clear() {
-    this.size = 0;
     initHashtable(this.initialCapacity);
   }
 
   @Override
   public boolean containsKey(Object key) {
-    boolean containsKey = false;
+    boolean containsKey;
     Bucket bucket = this.getBucketForKey(key);
     containsKey = bucket != null && bucket.containsKey(key);
     return containsKey;
@@ -146,8 +147,11 @@ public class HashMap<K, V> implements Map<K, V> {
     int bucketIndex = this.getBucketIndex(key);
     Bucket bucket = this.hashtable[bucketIndex];
     if (bucket != null) {
-      bucket.remove(key);
-      this.size -= 1;
+      Entry removedEntry = bucket.remove(key);
+      if (removedEntry != null) {
+        this.size -= 1;
+        result = removedEntry.getValue();
+      }
     }
     return result;
   }
@@ -209,18 +213,18 @@ public class HashMap<K, V> implements Map<K, V> {
       this.entries.add(entry);
     }
 
-    public V remove(Object key) {
-      V removedValue = null;
+    public Entry remove(Object key) {
+      Entry removedEntry = null;
       int index = 0;
       for (Entry entry : this.entries) {
         if (entry.getKey().equals(key)) {
-          removedValue = entry.getValue();
+          removedEntry = entry;
           this.entries.remove(index);
           break;
         }
         index += 1;
       }
-      return removedValue;
+      return removedEntry;
     }
 
     public int size() {

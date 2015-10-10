@@ -110,7 +110,7 @@ public class HashMap<K, V> implements Map<K, V> {
   public V put(K key, V value) {
     V oldValue = null;
     if (key == null) {
-      throw new IllegalArgumentException("No null keys allowed");      
+      throw new IllegalArgumentException("No null keys allowed");
     }
     Entry newEntry = new Entry(key, value);
     int bucketIndex = this.getBucketIndex(key);

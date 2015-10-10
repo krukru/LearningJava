@@ -31,7 +31,7 @@ public class HashMap<K, V> implements Map<K, V> {
 
   @SuppressWarnings("unchecked")
   private void initHashtable(int hashtableSize) {
-    this.hashtable = (Bucket[]) new Object[hashtableSize]; // array of generics hack
+    this.hashtable = (Bucket[])java.lang.reflect.Array.newInstance(Bucket.class, hashtableSize);
   }
 
   private int getCurrentCapacity() {
@@ -197,7 +197,7 @@ public class HashMap<K, V> implements Map<K, V> {
     }
   }
 
-  private class Bucket implements Iterable<Entry> {
+  private class Bucket implements Iterable<Entry>  {
     private LinkedList<Entry> entries = new LinkedList<Entry>();
 
     public void add(K key, V value) {

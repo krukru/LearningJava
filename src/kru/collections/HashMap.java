@@ -1,6 +1,5 @@
 package kru.collections;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -49,11 +48,7 @@ public class HashMap<K, V> implements Map<K, V> {
   public boolean containsKey(Object key) {
     boolean containsKey = false;
     Bucket bucket = this.getBucketForKey(key);
-    if (bucket == null) {
-      containsKey = false;
-    } else {
-      containsKey = bucket.containsKey(key);
-    }
+    containsKey = bucket != null && bucket.containsKey(key);
     return containsKey;
   }
 
@@ -64,11 +59,10 @@ public class HashMap<K, V> implements Map<K, V> {
      * operation
      */
     boolean containsValue = false;
-    for (int i = 0; i < this.hashtable.length; i++) {
-      Bucket bucket = this.hashtable[i];
+    for (Bucket bucket : this.hashtable) {
       if (bucket != null) {
         containsValue = bucket.containsValue(value);
-        if (containsValue == true) {
+        if (containsValue) {
           break;
         }
       }
@@ -173,8 +167,7 @@ public class HashMap<K, V> implements Map<K, V> {
   }
 
   private Bucket getBucketForKey(Object key) {
-    Bucket result = this.hashtable[getBucketIndex(key)];
-    return result;
+    return this.hashtable[getBucketIndex(key)];
   }
 
   private class Entry implements Map.Entry<K, V> {
@@ -198,7 +191,7 @@ public class HashMap<K, V> implements Map<K, V> {
     @Override
     public V setValue(V value) {
       /* Contract says we should return the old value */
-      V oldValue = value;
+      V oldValue = this.tuple.getValue();
       this.tuple.setValue(value);
       return oldValue;
     }

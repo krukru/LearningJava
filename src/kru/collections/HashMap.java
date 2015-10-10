@@ -1,11 +1,7 @@
 package kru.collections;
 
 import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import kru.exception.runtimexception.NotImplementedException;
 import kru.util.Tuple;
@@ -70,6 +66,29 @@ public class HashMap<K, V> implements Map<K, V> {
       }
     }
     return containsValue;
+  }
+
+  public boolean equals(HashMap secondMap) {
+    if (this.size() != secondMap.size() || this.getCurrentCapacity() != secondMap.getCurrentCapacity()) {
+      return false;
+    }
+    for (int i = 0; i < this.hashtable.length; i++) {
+      Bucket firstBucket = this.hashtable[i];
+      Bucket secondBucket = secondMap.hashtable[i];
+      if (firstBucket != null && secondBucket != null) {
+        boolean areEqual = firstBucket.equals(secondBucket);
+        if (areEqual == false) {
+          return false;
+        }
+      }
+      else if (firstBucket == null && secondBucket == null) {
+        /* still need to check */
+      }
+      else {
+        return false;
+      }
+    }
+    return true;
   }
 
   @Override
@@ -191,34 +210,7 @@ public class HashMap<K, V> implements Map<K, V> {
     return this.hashtable[getBucketIndex(key)];
   }
 
-  private class Entry implements Map.Entry<K, V> {
-
-    private Tuple<K, V> tuple;
-
-    public Entry(K key, V value) {
-      this.tuple = new Tuple<K, V>(key, value);
-    }
-
-    @Override
-    public K getKey() {
-      return this.tuple.getKey();
-    }
-
-    @Override
-    public V getValue() {
-      return this.tuple.getValue();
-    }
-
-    @Override
-    public V setValue(V value) {
-      /* Contract says we should return the old value */
-      V oldValue = this.tuple.getValue();
-      this.tuple.setValue(value);
-      return oldValue;
-    }
-  }
-
-  private class Bucket implements Iterable<Entry>  {
+  private class Bucket implements Iterable<Entry> {
     private LinkedList<Entry> entries = new LinkedList<Entry>();
 
     public void add(K key, V value) {
@@ -242,6 +234,22 @@ public class HashMap<K, V> implements Map<K, V> {
         index += 1;
       }
       return removedEntry;
+    }
+
+    public boolean equals(Bucket secondBucket) {
+      if (this.size() != secondBucket.size()) {
+        return false;
+      }
+      ListIterator<Entry> firstBucketIterator = this.entries.listIterator();
+      ListIterator<Entry> secondBucketIterator = secondBucket.entries.listIterator();
+      while (firstBucketIterator.hasNext()) {
+        Entry firstEntry = firstBucketIterator.next();
+        Entry secondEntry = secondBucketIterator.next();
+        if (firstEntry.equals(secondEntry) == false) {
+          return false;
+        }
+      }
+      return true;
     }
 
     public int size() {
@@ -276,6 +284,35 @@ public class HashMap<K, V> implements Map<K, V> {
     }
   }
 
+  private class Entry implements Map.Entry<K, V> {
 
+    private Tuple<K, V> tuple;
+
+    public Entry(K key, V value) {
+      this.tuple = new Tuple<K, V>(key, value);
+    }
+
+    @Override
+    public K getKey() {
+      return this.tuple.getKey();
+    }
+
+    @Override
+    public V getValue() {
+      return this.tuple.getValue();
+    }
+
+    @Override
+    public V setValue(V value) {
+      /* Contract says we should return the old value */
+      V oldValue = this.tuple.getValue();
+      this.tuple.setValue(value);
+      return oldValue;
+    }
+
+    public boolean equals(Entry secondEntry) {
+      return (this.tuple.getKey() == secondEntry.tuple.getKey()) && (this.tuple.getValue() == secondEntry.tuple.getValue());
+    }
+  }
 }
 

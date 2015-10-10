@@ -31,9 +31,9 @@ public class LinkedListTest {
   @Test
   public void basicTest() {
     LinkedList<String> list = new LinkedList<>();
-    list.add("B");
-    list.add("C");
-    list.add("D");
+    list.add(0, "B");
+    list.add(1, "C");
+    list.add(2, "D");
     list.add(0, "A");
 
     assertEquals(list.indexOf("A"), 0);
@@ -57,9 +57,9 @@ public class LinkedListTest {
     assertTrue(list.get(1).equals("F"));
 
     list.add(0, "G");
-    assertTrue(list.equals(new LinkedList<>(Arrays.asList("G", "B", "F", "D"))));
-    assertFalse(list.equals(new LinkedList<>(Arrays.asList("G", "B", "F", "D", "E"))));
-    assertFalse(list.equals(new LinkedList<>(Arrays.asList("B", "F", "E"))));
+    assertTrue(list.equals(new LinkedList<String>(Arrays.asList("G", "B", "F", "D"))));
+    assertFalse(list.equals(new LinkedList<String>(Arrays.asList("G", "B", "F", "D", "E"))));
+    assertFalse(list.equals(new LinkedList<String>(Arrays.asList("B", "F", "E"))));
 
     assertEquals(4, list.size());
 
@@ -90,11 +90,11 @@ public class LinkedListTest {
 
     iterator = list.listIterator();
     iterator.add("M");
-    assertEquals(list, new LinkedList<>(Arrays.asList("M", "G", "B", "F", "D")));
+    assertTrue(list.equals(new LinkedList<String>(Arrays.asList("M", "G", "B", "F", "D"))));
 
     assertEquals(iterator.next(), "M");
     iterator.add("N");
-    assertEquals(list, new LinkedList<>(Arrays.asList("M", "N", "G", "B", "F", "D")));
+    assertTrue(list.equals(new LinkedList<String>(Arrays.asList("M", "N", "G", "B", "F", "D"))));
 
     iterator = list.listIterator();
     while (iterator.hasNext()) {

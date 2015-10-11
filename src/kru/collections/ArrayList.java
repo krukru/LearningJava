@@ -69,6 +69,24 @@ public class ArrayList<E> extends AbstractList<E> {
   public void add(int index, E element) {
     internalInsert(index, element);
     this.size += 1;
+    if (needToResize()) {
+      resize();
+    }
+  }
+
+  private boolean needToResize() {
+    return (size > getCapacity() * RESIZE_THRESHOLD);
+  }
+
+  private void resize() {
+    int newCapacity = getCapacity() * RESIZE_FACTOR;
+    E[] newArray = (E[]) new Object[newCapacity];
+    System.arraycopy(array, 0, newArray, 0, getCapacity());
+    this.array = newArray;
+  }
+
+  private int getCapacity() {
+    return this.array.length;
   }
 
   private void internalInsert(int index, E element) {

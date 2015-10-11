@@ -16,14 +16,14 @@
  */
 package kru.collections.tests;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class LinkedListTest extends AbstractListTest {
+public class ArrayListTest extends AbstractListTest {
 
   @Override
   protected List<String> createList() {
-    return new LinkedList<String>();
+    return new ArrayList<String>();
   }
 }

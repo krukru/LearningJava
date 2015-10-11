@@ -16,7 +16,8 @@
  */
 package kru.collections.tests;
 
-import java.util.ArrayList;
+import kru.collections.ArrayList;
+
 import java.util.List;
 
 

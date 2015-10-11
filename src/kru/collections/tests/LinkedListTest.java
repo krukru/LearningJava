@@ -16,9 +16,9 @@
  */
 package kru.collections.tests;
 
-import java.util.LinkedList;
-import java.util.List;
+import kru.collections.LinkedList;
 
+import java.util.List;
 
 public class LinkedListTest extends AbstractListTest {
 

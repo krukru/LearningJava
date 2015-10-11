@@ -4,7 +4,7 @@ import kru.exception.runtimexception.NotImplementedException;
 
 import java.util.*;
 
-public class LinkedList<E> implements List<E> {
+public class LinkedList<E> extends AbstractList<E> {
 
   private int size = 0;
   private LinkedListNode root;
@@ -158,40 +158,6 @@ public class LinkedList<E> implements List<E> {
       currentNode = currentNode.next;
     }
     return null;
-  }
-
-  @Override
-  public boolean containsAll(Collection<?> collection) {
-    for (Object element : collection) {
-      if (this.contains(element) == false) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  @Override
-  public boolean addAll(Collection<? extends E> collection) {
-    return this.addAll(0, collection);
-  }
-
-  @Override
-  public boolean addAll(int index, Collection<? extends E> collection) {
-    int offset = 0;
-    for (E element : collection) {
-      this.add(index + offset, element);
-      offset += 1;
-    }
-    return true;
-  }
-
-  @Override
-  public boolean removeAll(Collection<?> collection) {
-    boolean collectionUpdated = false;
-    for (Object element : collection) {
-      collectionUpdated = this.remove(element) || collectionUpdated;
-    }
-    return collectionUpdated;
   }
 
   @Override

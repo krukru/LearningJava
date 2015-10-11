@@ -1,6 +1,7 @@
 package kru.collections;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -54,5 +55,28 @@ public abstract class AbstractList<E> implements List<E> {
       }
     }
     return collectionUpdated;
+  }
+
+  public boolean equals(Object object) {
+    if (this == object) {
+      return true;
+    }
+    if (object instanceof List == false) {
+      return false;
+    }
+    List<E> secondList = (List<E>)object;
+    if (this.size() != secondList.size()) {
+      return false;
+    }
+    Iterator<E> firstIterator = this.iterator();
+    Iterator<E> secondIterator = secondList.iterator();
+    while (firstIterator.hasNext()) {
+      E firstElement = firstIterator.next();
+      E secondElement = secondIterator.next();
+      if (firstElement.equals(secondElement) == false) {
+        return false;
+      }
+    }
+    return true;
   }
 }

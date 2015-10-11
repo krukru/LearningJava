@@ -278,22 +278,6 @@ public class LinkedList<E> implements List<E> {
     return null;
   }
 
-  public boolean equals(LinkedList<E> secondList) {
-    if (this.size != secondList.size) {
-      return false;
-    }
-    Iterator<E> firstIterator = this.iterator();
-    Iterator<E> secondIterator = secondList.iterator();
-    while (firstIterator.hasNext()) {
-      E firstElement = firstIterator.next();
-      E secondElement = secondIterator.next();
-      if (firstElement.equals(secondElement) == false) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   private class LinkedListNode {
     private E element;
     private LinkedListNode prev;

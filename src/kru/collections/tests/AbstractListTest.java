@@ -16,10 +16,8 @@
  */
 package kru.collections.tests;
 
-import kru.collections.LinkedList;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
@@ -30,6 +28,12 @@ import static org.junit.Assert.*;
 public abstract class AbstractListTest {
 
   protected abstract List<String> createList();
+
+  private List<String> createList(List<String> strings) {
+    List<String> result = this.createList();
+    result.addAll(strings);
+    return result;
+  }
 
   @Test
   public void basicTest() {
@@ -60,13 +64,14 @@ public abstract class AbstractListTest {
     assertTrue(list.get(1).equals("F"));
 
     list.add(0, "G");
-    assertTrue(list.equals(new LinkedList<String>(Arrays.asList("G", "B", "F", "D"))));
-    assertFalse(list.equals(new LinkedList<String>(Arrays.asList("G", "B", "F", "D", "E"))));
-    assertFalse(list.equals(new LinkedList<String>(Arrays.asList("B", "F", "E"))));
+
+    assertTrue(list.equals(this.createList(Arrays.asList("G", "B", "F", "D"))));
+    assertFalse(list.equals(this.createList(Arrays.asList("G", "B", "F", "D", "E"))));
+    assertFalse(list.equals(this.createList(Arrays.asList("B", "F", "E"))));
 
     assertEquals(4, list.size());
 
-    ArrayList<String> copy = new ArrayList<>(Arrays.asList("G", "B", "F", "D"));
+    List<String> copy = this.createList(Arrays.asList("G", "B", "F", "D"));
     int i = 0;
     for (String item : list) {
       assertEquals(item, copy.get(i++));
@@ -93,11 +98,11 @@ public abstract class AbstractListTest {
 
     iterator = list.listIterator();
     iterator.add("M");
-    assertTrue(list.equals(new LinkedList<String>(Arrays.asList("M", "G", "B", "F", "D"))));
+    assertTrue(list.equals(this.createList(Arrays.asList("M", "G", "B", "F", "D"))));
 
     assertEquals(iterator.next(), "M");
     iterator.add("N");
-    assertTrue(list.equals(new LinkedList<String>(Arrays.asList("M", "N", "G", "B", "F", "D"))));
+    assertTrue(list.equals(this.createList(Arrays.asList("M", "N", "G", "B", "F", "D"))));
 
     iterator = list.listIterator();
     while (iterator.hasNext()) {
@@ -110,4 +115,6 @@ public abstract class AbstractListTest {
     }
     assertEquals(iterator.next(), "M");
   }
+
+
 }

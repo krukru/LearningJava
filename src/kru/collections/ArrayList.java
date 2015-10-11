@@ -5,7 +5,7 @@ import kru.exception.runtimexception.NotImplementedException;
 import java.lang.reflect.Array;
 import java.util.*;
 
-public class ArrayList<E> implements List<E> {
+public class ArrayList<E> extends AbstractList<E> {
 
   private final static int INITIAL_CAPACITY = 32;
   private final static double RESIZE_THRESHOLD = 0.8;
@@ -112,41 +112,6 @@ public class ArrayList<E> implements List<E> {
     for (int i = index; i < this.size - 1; i++) {
       this.array[i] = this.array[i + 1];
     }
-  }
-
-  @Override
-  public boolean containsAll(Collection<?> collection) {
-    for (Object element : collection) {
-      if (this.contains(element) == false) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  @Override
-  public boolean addAll(Collection<? extends E> collection) {
-    return this.addAll(0, collection);
-  }
-
-  @Override
-  public boolean addAll(int index, Collection<? extends E> collection) {
-    int offset = 0;
-    for (E element : collection) {
-      this.add(index + offset, element);
-      offset += 1;
-    }
-    return true;
-  }
-
-  @Override
-  public boolean removeAll(Collection<?> collection) {
-    throw new NotImplementedException("Will be implemented via base class");
-  }
-
-  @Override
-  public boolean retainAll(Collection<?> collection) {
-    throw new NotImplementedException("Will be implemented via base class");
   }
 
   @Override

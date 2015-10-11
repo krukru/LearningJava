@@ -80,8 +80,8 @@ public class ArrayList<E> extends AbstractList<E> {
   }
 
   private void shiftArrayBeforeInsert(int index) {
-    int shiftingIndex = this.size;
-    while (index < shiftingIndex) {
+    int shiftingIndex = this.size - 1;
+    while (index <= shiftingIndex) {
       this.array[shiftingIndex + 1] = this.array[shiftingIndex];
       shiftingIndex -= 1;
     }
@@ -105,6 +105,7 @@ public class ArrayList<E> extends AbstractList<E> {
     }
     E element = this.array[index];
     internalRemove(index);
+    this.size -= 1;
     return element;
   }
 

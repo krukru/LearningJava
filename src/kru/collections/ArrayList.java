@@ -46,7 +46,7 @@ public class ArrayList<E> extends AbstractList<E> {
 
   @Override
   public Iterator<E> iterator() {
-    return null;
+    return new ArrayListIterator(this);
   }
 
   @Override
@@ -139,27 +139,96 @@ public class ArrayList<E> extends AbstractList<E> {
   }
 
   @Override
-  public int indexOf(Object o) {
-    return 0;
+  public int indexOf(Object object) {
+    for (int i = 0; i < this.size; i++) {
+      if (this.array[i].equals(object)) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   @Override
-  public int lastIndexOf(Object o) {
-    return 0;
+  public int lastIndexOf(Object object) {
+    for (int i = this.size - 1; i >= 0; i--) {
+      if (this.array[i].equals(object)) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   @Override
   public ListIterator<E> listIterator() {
-    return null;
+    return new ArrayListIterator(this);
   }
 
   @Override
   public ListIterator<E> listIterator(int index) {
-    return null;
+    throw new NotImplementedException();
   }
 
   @Override
   public List<E> subList(int fromIndex, int toIndex) {
-    return null;
+    throw new NotImplementedException();
+  }
+
+  private class ArrayListIterator implements ListIterator<E> {
+
+    int nextIndex = 0;
+    ArrayList<E> arrayList;
+
+    public ArrayListIterator(ArrayList<E> arrayList) {
+      this.arrayList = arrayList;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return (nextIndex < arrayList.size);
+    }
+
+    @Override
+    public E next() {
+      E element = arrayList.array[nextIndex];
+      this.nextIndex += 1;
+      return element;
+    }
+
+    @Override
+    public boolean hasPrevious() {
+      return (nextIndex - 1 >= 0);
+    }
+
+    @Override
+    public E previous() {
+      E element = arrayList.array[nextIndex - 1];
+      this.nextIndex -= 1;
+      return element;
+    }
+
+    @Override
+    public int nextIndex() {
+      return nextIndex;
+    }
+
+    @Override
+    public int previousIndex() {
+      return nextIndex - 1;
+    }
+
+    @Override
+    public void remove() {
+      arrayList.remove(nextIndex);
+    }
+
+    @Override
+    public void set(E e) {
+      arrayList.array[nextIndex] = e;
+    }
+
+    @Override
+    public void add(E e) {
+      arrayList.add(nextIndex, e);
+    }
   }
 }

@@ -26,4 +26,17 @@ public class Tuple<K, V> {
     this.value = value;
   }
 
+  @Override
+  public boolean equals(Object object) {
+    if (this == object) {
+      return true;
+    }
+    if (object instanceof Tuple) {
+      Tuple secondTuple = (Tuple) object;
+      return (this.key.equals(secondTuple.key) && this.value.equals(secondTuple.value));
+    } else {
+      return false;
+    }
+  }
+
 }

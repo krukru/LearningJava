@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 import kru.exception.runtimexception.NotImplementedException;
-import kru.util.Tuple;
+import kru.util.KeyValuePair;
 
 public class HashMap<K, V> implements Map<K, V> {
 
@@ -286,32 +286,32 @@ public class HashMap<K, V> implements Map<K, V> {
 
   private class Entry implements Map.Entry<K, V> {
 
-    private Tuple<K, V> tuple;
+    private KeyValuePair<K, V> keyValuePair;
 
     public Entry(K key, V value) {
-      this.tuple = new Tuple<K, V>(key, value);
+      this.keyValuePair = new KeyValuePair<K, V>(key, value);
     }
 
     @Override
     public K getKey() {
-      return this.tuple.getKey();
+      return this.keyValuePair.getKey();
     }
 
     @Override
     public V getValue() {
-      return this.tuple.getValue();
+      return this.keyValuePair.getValue();
     }
 
     @Override
     public V setValue(V value) {
       /* Contract says we should return the old value */
-      V oldValue = this.tuple.getValue();
-      this.tuple.setValue(value);
+      V oldValue = this.keyValuePair.getValue();
+      this.keyValuePair.setValue(value);
       return oldValue;
     }
 
     public boolean equals(Entry secondEntry) {
-      return (this.tuple.getKey() == secondEntry.tuple.getKey()) && (this.tuple.getValue() == secondEntry.tuple.getValue());
+      return (this.keyValuePair.getKey() == secondEntry.keyValuePair.getKey()) && (this.keyValuePair.getValue() == secondEntry.keyValuePair.getValue());
     }
   }
 }

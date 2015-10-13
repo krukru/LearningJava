@@ -1,15 +1,15 @@
 package kru.util;
 
-public class Tuple<K, V> {
+public class KeyValuePair<K, V> {
 
   private final K key;
   private V value;
 
-  public Tuple(K key) {
+  public KeyValuePair(K key) {
     this.key = key;
   }
 
-  public Tuple(K key, V value) {
+  public KeyValuePair(K key, V value) {
     this.key = key;
     this.value = value;
   }
@@ -31,9 +31,9 @@ public class Tuple<K, V> {
     if (this == object) {
       return true;
     }
-    if (object instanceof Tuple) {
-      Tuple secondTuple = (Tuple) object;
-      return (this.key.equals(secondTuple.key) && this.value.equals(secondTuple.value));
+    if (object instanceof KeyValuePair) {
+      KeyValuePair secondKeyValuePair = (KeyValuePair) object;
+      return (this.key.equals(secondKeyValuePair.key) && this.value.equals(secondKeyValuePair.value));
     } else {
       return false;
     }

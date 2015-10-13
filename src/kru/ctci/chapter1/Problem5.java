@@ -11,29 +11,23 @@ public class Problem5 {
     StringBuilder sb = new StringBuilder();
     Integer runningTotal = 1;
     char lastCharacter = input.charAt(0);
-    boolean sequenceCompressed = false;
     for (int i = 1; i < input.length(); i++) {
       char currentCharacter = input.charAt(i);
       if (currentCharacter == lastCharacter) {
         runningTotal += 1;
-      }
-      else {
+      } else {
         sb.append(lastCharacter);
         sb.append(runningTotal.toString());
-        sequenceCompressed = (i == input.length());
         lastCharacter = currentCharacter;
         runningTotal = 1;
       }
     }
-    if (sequenceCompressed == false) {
-      sb.append(lastCharacter);
-      sb.append(runningTotal.toString());
-    }
+    sb.append(lastCharacter);
+    sb.append(runningTotal.toString());
     String compressedString = sb.toString();
     if (compressedString.length() < input.length()) {
       result = compressedString;
-    }
-    else {
+    } else {
       result = input;
     }
     return result;

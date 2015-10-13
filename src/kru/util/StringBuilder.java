@@ -33,13 +33,13 @@ public class StringBuilder implements CharSequence, Appendable {
   }
 
   @Override
-  public Appendable append(CharSequence csq) throws IOException {
+  public Appendable append(CharSequence csq) {
     append(csq, 0, csq.length());
     return this;
   }
 
   @Override
-  public Appendable append(CharSequence csq, int start, int end) throws IOException {
+  public Appendable append(CharSequence csq, int start, int end) {
     internalValidate(csq, start, end);
     for (int i = start; i < end; i++) {
       internalAppend(csq.charAt(i));
@@ -54,7 +54,7 @@ public class StringBuilder implements CharSequence, Appendable {
   }
 
   @Override
-  public Appendable append(char c) throws IOException {
+  public Appendable append(char c) {
     internalAppend(c);
     return this;
   }

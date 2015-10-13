@@ -8,29 +8,26 @@ import static org.junit.Assert.*;
 
 public class TupleTest {
 
-  Tuple<Integer, String> tuple = new Tuple<>(1, "Hey");
-
   @Test
-  public void testGetKey() throws Exception {
-    assertEquals(tuple.getKey(), new Integer(1));
+  public void testGetItem1() throws Exception {
+    Tuple<Integer, Integer> t = Tuple.create(5, 20);
+    assertEquals(5, t.getItem1().intValue());
   }
 
   @Test
-  public void testGetValue() throws Exception {
-    assertEquals(tuple.getValue(), "Hey");
-  }
-
-  @Test
-  public void testSetValue() throws Exception {
-    String newValue = "Wazzzaaap";
-    tuple.setValue(newValue);
-    assertEquals(tuple.getValue(), newValue);
+  public void testGetItem2() throws Exception {
+    Tuple<Integer, Integer> t = new Tuple<>(5, 20);
+    assertEquals(Integer.valueOf(20), t.getItem2());
   }
 
   @Test
   public void testEquals() throws Exception {
-    Tuple<Integer, String> secondTuple = new Tuple<Integer, String>(1, "Hey");
-    assertTrue(secondTuple.equals(tuple));
-    assertTrue(tuple.equals(secondTuple));
+    Tuple<Integer, Integer> t1 = Tuple.create(5, 20);
+    Tuple<Integer, Integer> t2 = new Tuple<>(5, 20);
+    Tuple<Integer, Integer> t3 = new Tuple<>(20, 5);
+    Tuple<Integer, Integer> t4 = new Tuple<>(5, 5);
+    assertTrue(t1.equals(t2));
+    assertFalse(t1.equals(t3));
+    assertFalse(t1.equals(t4));
   }
 }

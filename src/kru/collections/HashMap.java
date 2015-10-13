@@ -1,7 +1,11 @@
 package kru.collections;
 
 import java.lang.reflect.Array;
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.Set;
 
 import kru.exception.runtimexception.NotImplementedException;
 import kru.util.KeyValuePair;
@@ -210,7 +214,7 @@ public class HashMap<K, V> implements Map<K, V> {
     return this.hashtable[getBucketIndex(key)];
   }
 
-  private class Bucket implements Iterable<Entry> {
+  class Bucket implements Iterable<Entry> {
     private LinkedList<Entry> entries = new LinkedList<Entry>();
 
     public void add(K key, V value) {
@@ -284,7 +288,7 @@ public class HashMap<K, V> implements Map<K, V> {
     }
   }
 
-  private class Entry implements Map.Entry<K, V> {
+  class Entry implements Map.Entry<K, V> {
 
     private KeyValuePair<K, V> keyValuePair;
 

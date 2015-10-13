@@ -1,6 +1,8 @@
-package kru.ctci.chapter1;
+package kru.ctci.chapter1.tests;
 
 import org.junit.Test;
+
+import kru.ctci.chapter1.Problem2;
 
 import static org.junit.Assert.*;
 

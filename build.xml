@@ -185,20 +185,11 @@
   <path id="classpath.base" />
 
 
-  <path id="classpath.test">
-    <pathelement location="lib/junit-4.11.jar" />
-    <pathelement location="lib/hamcrest-core-1.3.jar" />
-    <pathelement location="${learningjava.output.dir}"/>
-    <path refid="classpath.base" />
-  </path>
+
   <!-- Test and build all files  -->
   <!-- To run this: use "ant" (default) or "ant run" -->
   <target name="test" depends="all">
     <junit printsummary="yes" showoutput="true" haltonfailure="yes">
-      <classpath>
-        <path refid="classpath.test" />
-        <pathelement location="${learningjava.testoutput.dir}"/>
-      </classpath>
       <formatter type="brief" usefile="false" />
       <test name="kru.collections.testing.LinkedListTest"/>
       <batchtest>

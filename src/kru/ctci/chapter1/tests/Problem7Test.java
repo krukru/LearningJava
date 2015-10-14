@@ -14,7 +14,7 @@ public class Problem7Test {
   public void testBasic1() {
     int[][] matrix = {{0}};
     int[][] expectedMatrix = {{0}};
-    p7.replaceItemsInRowAndColumn(matrix);
+    p7.setToZeroRowsAndColumnsThatContainZero(matrix);
     assertArrayEquals(expectedMatrix, matrix);
   }
 
@@ -22,7 +22,7 @@ public class Problem7Test {
   public void testBasic2_NothingToReplace() {
     int[][] matrix = {{1, 2}, {3, 4}};
     int[][] expectedMatrix = {{1, 2}, {3, 4}};
-    p7.replaceItemsInRowAndColumn(matrix);
+    p7.setToZeroRowsAndColumnsThatContainZero(matrix);
     assertArrayEquals(expectedMatrix, matrix);
   }
 
@@ -30,7 +30,7 @@ public class Problem7Test {
   public void testBasic3_PartialReplace() {
     int[][] matrix = {{1, 0, 3}, {4, 5, 6}, {7, 8, 9}};
     int[][] expectedMatrix = {{0, 0, 0}, {4, 0, 6}, {7, 0, 9}};
-    p7.replaceItemsInRowAndColumn(matrix);
+    p7.setToZeroRowsAndColumnsThatContainZero(matrix);
     assertArrayEquals(expectedMatrix, matrix);
   }
 
@@ -38,7 +38,7 @@ public class Problem7Test {
   public void testBasic4_PartialReplace() {
     int[][] matrix = {{0, 2, 3}, {4, 5, 6}, {7, 8, 0}};
     int[][] expectedMatrix = {{0, 0, 0}, {0, 5, 0}, {0, 0, 0}};
-    p7.replaceItemsInRowAndColumn(matrix);
+    p7.setToZeroRowsAndColumnsThatContainZero(matrix);
     assertArrayEquals(expectedMatrix, matrix);
   }
 
@@ -46,7 +46,7 @@ public class Problem7Test {
   public void testBasic4_FullReplace() {
     int[][] matrix = {{0, 2, 3}, {4, 0, 6}, {7, 8, 0}};
     int[][] expectedMatrix = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-    p7.replaceItemsInRowAndColumn(matrix);
+    p7.setToZeroRowsAndColumnsThatContainZero(matrix);
     assertArrayEquals(expectedMatrix, matrix);
   }
 
@@ -73,7 +73,7 @@ public class Problem7Test {
         }
       }
     }
-    p7.replaceItemsInRowAndColumn(matrix);
+    p7.setToZeroRowsAndColumnsThatContainZero(matrix);
     assertArrayEquals(expectedMatrix, matrix);
   }
 }

@@ -4,6 +4,9 @@ public class Problem8 {
 
 
   public boolean isRotation(String s1, String s2) {
+    if (s1.length() != s2.length()) {
+      return false;
+    }
     String duplicatedS1 = s1 + s1; /* Maybe you can't do this, see concat() */
     return isSubstring(duplicatedS1, s2);
   }

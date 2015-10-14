@@ -45,7 +45,7 @@ public class Problem8Test {
     boolean areRotated = p8.isRotation(s1, s2);
     assertTrue(areRotated);
     areRotated = p8.isRotation(s2, s1);
-    assertTrue(output);
+    assertTrue(areRotated);
   }
 
   @Test

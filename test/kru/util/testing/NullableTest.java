@@ -1,7 +1,6 @@
-package kru.util.tests;
+package kru.util.testing;
 
 import org.junit.Test;
-import org.omg.CORBA.INTERNAL;
 
 import kru.util.Nullable;
 

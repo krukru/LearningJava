@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kru.collections.tests;
+package kru.collections.testing;
 
 import kru.collections.LinkedList;
 

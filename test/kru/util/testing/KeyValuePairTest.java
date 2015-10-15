@@ -12,6 +12,7 @@ public class KeyValuePairTest {
 
   @Test
   public void testGetKey() throws Exception {
+    fail();
     assertEquals(keyValuePair.getKey(), new Integer(1));
   }
 

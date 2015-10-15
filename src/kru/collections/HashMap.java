@@ -162,12 +162,15 @@ public class HashMap<K, V> implements Map<K, V> {
 
   private void resize() {
     int newCapacity = getCurrentCapacity() * RESIZE_FACTOR;
-    Bucket[] newHashtable = (Bucket[]) Array.newInstance(Bucket.class, newCapacity);
-    for (int i = 0; i < hashtable.length; i++) {
-      int newKey = getBucketIndex(hashtable[i]);
-      newHashtable[i] = hashtable[i];
+    Bucket[] oldTable = hashtable;
+    this.hashtable = (Bucket[]) Array.newInstance(Bucket.class, newCapacity);
+    for (int i = 0; i < oldTable.length; i++) {
+      if (oldTable[i] != null) {
+        for (Entry entry : oldTable[i]) {
+          put(entry.getKey(), entry.getValue());
+        }
+      }
     }
-    this.hashtable = newHashtable;
   }
 
   private boolean requiresResize() {
@@ -241,7 +244,7 @@ public class HashMap<K, V> implements Map<K, V> {
     }
 
     public boolean equals(Bucket secondBucket) {
-      if (size != secondBucket.size()) {
+      if (size() != secondBucket.size()) {
         return false;
       }
       ListIterator<Entry> firstBucketIterator = entries.listIterator();

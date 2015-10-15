@@ -164,8 +164,10 @@ public class HashMap<K, V> implements Map<K, V> {
     int newCapacity = getCurrentCapacity() * RESIZE_FACTOR;
     Bucket[] newHashtable = (Bucket[]) Array.newInstance(Bucket.class, newCapacity);
     for (int i = 0; i < hashtable.length; i++) {
-      int newKey = getBucketIndex(hashtable[i]);
-      newHashtable[i] = hashtable[i];
+      if (hashtable[i] != null) {
+        int newKey = getBucketIndex(hashtable[i], newCapacity);
+        newHashtable[newKey] = hashtable[i];
+      }
     }
     this.hashtable = newHashtable;
   }
@@ -206,8 +208,12 @@ public class HashMap<K, V> implements Map<K, V> {
     throw new NotImplementedException();
   }
 
+  private int getBucketIndex(Object key, int capacity) {
+    return key.hashCode() % capacity;
+  }
+
   private int getBucketIndex(Object key) {
-    return key.hashCode() % getCurrentCapacity();
+    return getBucketIndex(key, getCurrentCapacity());
   }
 
   private Bucket getBucketForKey(Object key) {
@@ -241,7 +247,7 @@ public class HashMap<K, V> implements Map<K, V> {
     }
 
     public boolean equals(Bucket secondBucket) {
-      if (size != secondBucket.size()) {
+      if (size() != secondBucket.size()) {
         return false;
       }
       ListIterator<Entry> firstBucketIterator = entries.listIterator();

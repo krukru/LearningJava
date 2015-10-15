@@ -1,12 +1,10 @@
 package kru.ctci.chapter1;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import org.junit.Test;
 
 import java.util.Arrays;
-
-import kru.ctci.chapter1.Problem4;
-
-import static org.junit.Assert.assertArrayEquals;
 
 public class Problem4Test {
 

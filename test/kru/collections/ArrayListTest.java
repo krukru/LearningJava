@@ -18,8 +18,6 @@ package kru.collections;
 
 import java.util.List;
 
-import kru.collections.ArrayList;
-
 
 public class ArrayListTest extends AbstractListTest {
 

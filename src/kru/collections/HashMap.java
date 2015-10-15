@@ -164,7 +164,7 @@ public class HashMap<K, V> implements Map<K, V> {
     int newCapacity = getCurrentCapacity() * RESIZE_FACTOR;
     Bucket[] newHashtable = (Bucket[]) Array.newInstance(Bucket.class, newCapacity);
     for (int i = 0; i < hashtable.length; i++) {
-      int newKey = getBucketIndex(hashtable[i]);
+      int newKey = getBucketIndex(hashtable[i], newCapacity);
       newHashtable[i] = hashtable[i];
     }
     this.hashtable = newHashtable;
@@ -206,8 +206,12 @@ public class HashMap<K, V> implements Map<K, V> {
     throw new NotImplementedException();
   }
 
+  private int getBucketIndex(Object key, int capacity) {
+    return key.hashCode() % capacity;
+  }
+
   private int getBucketIndex(Object key) {
-    return key.hashCode() % getCurrentCapacity();
+    return getBucketIndex(key, getCurrentCapacity());
   }
 
   private Bucket getBucketForKey(Object key) {

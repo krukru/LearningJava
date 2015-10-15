@@ -76,4 +76,35 @@ public class Problem7Test {
     p7.setToZeroRowsAndColumnsThatContainZero(matrix);
     assertArrayEquals(expectedMatrix, matrix);
   }
+
+  @Test
+  public void evaluationTest1() {
+    int[][] inputMatrix = {{1, 0}, {0, 4}};
+    int[][] expectedMatrix = {{0, 0}, {0, 0}};
+    p7.setToZeroRowsAndColumnsThatContainZero(inputMatrix);
+    assertArrayEquals(expectedMatrix, inputMatrix);
+  }
+
+  @Test
+  public void evaluationTest2() {
+    int[][] inputMatrix = new int[5][5];
+    int[][] expectedMatrix = new int[5][5];
+    for (int i = 0; i < 5; i++) {
+      for (int j = 0; j < 5; j++) {
+        inputMatrix[i][j] = (i == 4 - j) ? 1 : 0;
+        expectedMatrix[i][j] = 0;
+      }
+    }
+    p7.setToZeroRowsAndColumnsThatContainZero(inputMatrix);
+    assertArrayEquals(expectedMatrix, inputMatrix);
+  }
+
+  @Test
+  public void evaluationTest3() {
+    int[][] inputMatrix = {{1, 2, 0, 4}, {5, 6, 7, 8}, {9, 0, 1, 2}, {3, 4, 5, 0}};
+    int[][] expectedMatrix = new int[4][4];
+    expectedMatrix[1][0] = 5;
+    p7.setToZeroRowsAndColumnsThatContainZero(inputMatrix);
+    assertArrayEquals(expectedMatrix, inputMatrix);
+  }
 }

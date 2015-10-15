@@ -65,4 +65,12 @@ public class Problem8Test {
     boolean areRotated = p8.isRotation(s1, s2);
     assertTrue(areRotated);
   }
+
+  @Test
+  public void evaluationTest1() {
+    String s1 = "watterbottle";
+    String s2 = "erbottlewatt";
+    assertTrue(p8.isRotation(s1, s2));
+    assertTrue(p8.isRotation(s2, s1));
+  }
 }

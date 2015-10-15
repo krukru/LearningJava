@@ -8,9 +8,10 @@ import org.junit.Test;
 
 public class Problem1Test {
 
+  Problem1 p1 = new Problem1();
+
   @Test
-  public void testAreAllCharactersUnique() throws Exception {
-    Problem1 p1 = new Problem1();
+  public void testAreAllCharactersUnique() {
     String input1 = "abc";
     String input2 = "abca";
     String input3 = "";
@@ -21,5 +22,30 @@ public class Problem1Test {
     assertTrue(p1.areAllCharactersUnique(input3));
     assertTrue(p1.areAllCharactersUnique(input4));
     assertTrue(p1.areAllCharactersUnique(input5));
+  }
+
+  @Test
+  public void evaluationTest1() {
+    assertTrue(p1.areAllCharactersUnique("a"));
+  }
+
+  @Test
+  public void evaluationTest2() {
+    assertTrue(p1.areAllCharactersUnique("abcdefghijklmnopqrstuvwxyz"));
+  }
+
+  @Test
+  public void evaluationTest3() {
+    assertTrue(p1.areAllCharactersUnique("abA"));
+  }
+
+  @Test
+  public void evaluationTest4() {
+    assertFalse(p1.areAllCharactersUnique("aba"));
+  }
+
+  @Test
+  public void evaluationTest5() {
+    assertFalse(p1.areAllCharactersUnique("ZZZZZ"));
   }
 }

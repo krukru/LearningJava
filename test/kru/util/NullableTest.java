@@ -1,4 +1,4 @@
-package kru.util.testing;
+package kru.util;
 
 import org.junit.Test;
 

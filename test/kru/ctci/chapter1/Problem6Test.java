@@ -1,4 +1,4 @@
-package kru.ctci.chapter1.testing;
+package kru.ctci.chapter1;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package kru.collections.testing;
+package kru.collections;
 
 import org.junit.Test;
 

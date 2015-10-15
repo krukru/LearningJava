@@ -21,18 +21,14 @@ public class Problem1Test {
       list.add(rnd.nextInt(50));
     }
     p1.removeDuplicates(list);
-    java.util.HashSet<Integer> lookup = new java.util.HashSet<>();
-    HashSet<Integer> myLookup = new HashSet<>();
+    HashSet<Integer> lookup = new HashSet<>();
     for (int element : list) {
       if (lookup.contains(element)) {
-        myLookup.contains(element);
         fail("Duplicate found");
       }
       else {
         lookup.add(element);
-        myLookup.add(element);
       }
     }
-    System.out.print(false);
   }
 }

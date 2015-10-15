@@ -6,9 +6,9 @@
   <!-- 
   <property name="skip.tests" value="true"/>
    -->
-  
+
   <!-- Compiler options -->
-  
+
   <property name="compiler.debug" value="on"/>
   <property name="compiler.generate.no.warnings" value="off"/>
   <property name="compiler.args" value=""/>
@@ -55,21 +55,21 @@
     <exclude name="**/?*.clj"/>
     <exclude name="**/?*.aj"/>
   </patternset>
-  
+
   <!-- Modules -->
-  
-  
+
+
   <!-- Module LearningJava -->
-  
+
   <dirname property="module.learningjava.basedir" file="${ant.file}"/>
-  
-  
-  
+
+
+
   <property name="compiler.args.learningjava" value="-encoding UTF-8 -source 1.7 ${compiler.args}"/>
-  
+
   <property name="learningjava.output.dir" value="${module.learningjava.basedir}/out/production/LearningJava"/>
   <property name="learningjava.testoutput.dir" value="${module.learningjava.basedir}/out/test/LearningJava"/>
-  
+
   <path id="learningjava.module.bootclasspath">
     <!-- Paths to be included in compilation bootclasspath -->
   </path>
@@ -102,15 +102,15 @@
     <pathelement location="lib/junit-4.11.jar"/>
   </path>
 
-  
+
   <patternset id="excluded.from.module.learningjava">
     <patternset refid="ignored.files"/>
   </patternset>
-  
+
   <patternset id="excluded.from.compilation.learningjava">
     <patternset refid="excluded.from.module.learningjava"/>
   </patternset>
-  
+
   <path id="learningjava.module.sourcepath">
     <dirset dir="${module.learningjava.basedir}">
       <include name="src"/>

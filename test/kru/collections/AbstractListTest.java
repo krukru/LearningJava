@@ -49,7 +49,9 @@ public abstract class AbstractListTest {
     list.add("D");
     list.add("E");
     Iterator<String> iterator = list.iterator();
+    iterator.next();
     iterator.remove();
+    iterator.next();
     iterator.remove();
     assertEquals(3, list.size());
     assertEquals("C", list.get(0));

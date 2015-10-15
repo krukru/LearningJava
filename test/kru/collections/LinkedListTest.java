@@ -18,8 +18,6 @@ package kru.collections;
 
 import java.util.List;
 
-import kru.collections.LinkedList;
-
 public class LinkedListTest extends AbstractListTest {
 
   @Override

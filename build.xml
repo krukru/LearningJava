@@ -199,7 +199,6 @@
         <pathelement location="${learningjava.testoutput.dir}"/>
       </classpath>
       <formatter type="brief" usefile="false" />
-      <test name="kru.collections.testing.LinkedListTest"/>
       <batchtest>
         <fileset dir="test">
           <include name="**/*Test*.java"/>

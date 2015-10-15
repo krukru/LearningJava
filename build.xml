@@ -75,31 +75,31 @@
   </path>
 
   <path id="learningjava.module.production.classpath">
-    <pathelement location="lib/hamcrest-core-1.3.jar"/>
-    <pathelement location="lib/hamcrest-library-1.3.jar"/>
-    <pathelement location="lib/junit-4.11.jar"/>
+    <pathelement location="test/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="test/lib/hamcrest-library-1.3.jar"/>
+    <pathelement location="test/lib/junit-4.11.jar"/>
   </path>
 
   <path id="learningjava.runtime.production.module.classpath">
     <pathelement location="${learningjava.output.dir}"/>
-    <pathelement location="lib/hamcrest-core-1.3.jar"/>
-    <pathelement location="lib/hamcrest-library-1.3.jar"/>
-    <pathelement location="lib/junit-4.11.jar"/>
+    <pathelement location="test/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="test/lib/hamcrest-library-1.3.jar"/>
+    <pathelement location="test/lib/junit-4.11.jar"/>
   </path>
 
   <path id="learningjava.module.classpath">
     <pathelement location="${learningjava.output.dir}"/>
-    <pathelement location="lib/hamcrest-core-1.3.jar"/>
-    <pathelement location="lib/hamcrest-library-1.3.jar"/>
-    <pathelement location="lib/junit-4.11.jar"/>
+    <pathelement location="test/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="test/lib/hamcrest-library-1.3.jar"/>
+    <pathelement location="test/lib/junit-4.11.jar"/>
   </path>
 
   <path id="learningjava.runtime.module.classpath">
     <pathelement location="${learningjava.testoutput.dir}"/>
     <pathelement location="${learningjava.output.dir}"/>
-    <pathelement location="lib/hamcrest-core-1.3.jar"/>
-    <pathelement location="lib/hamcrest-library-1.3.jar"/>
-    <pathelement location="lib/junit-4.11.jar"/>
+    <pathelement location="test/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="test/lib/hamcrest-library-1.3.jar"/>
+    <pathelement location="test/lib/junit-4.11.jar"/>
   </path>
 
   
@@ -142,7 +142,7 @@
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
-      <fileset dir="${module.learningjava.basedir}/lib">
+      <fileset dir="/lib">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
@@ -185,8 +185,8 @@
 
 
   <path id="classpath.test">
-    <pathelement location="lib/junit-4.11.jar" />
-    <pathelement location="lib/hamcrest-core-1.3.jar" />
+    <pathelement location="test/lib/junit-4.11.jar" />
+    <pathelement location="test/lib/hamcrest-core-1.3.jar" />
     <pathelement location="${learningjava.output.dir}"/>
     <path refid="classpath.base" />
   </path>

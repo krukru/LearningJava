@@ -1,8 +1,12 @@
 package kru.collections;
 
-import kru.exception.runtimexception.NotImplementedException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
-import java.util.*;
+import kru.exception.runtimexception.NotImplementedException;
 
 public class LinkedList<E> extends AbstractList<E> {
 
@@ -59,7 +63,8 @@ public class LinkedList<E> extends AbstractList<E> {
 
   @Override
   public <T> T[] toArray(T[] a) {
-    throw new NotImplementedException("Odbijam implementirati ovu glupu metodu. Java, you should know better.");
+    throw new NotImplementedException("Odbijam implementirati ovu glupu metodu. Java, you should " +
+        "know better.");
   }
 
   @Override

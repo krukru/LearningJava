@@ -6,7 +6,9 @@ import java.io.IOException;
 
 import kru.util.StringBuilder;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class StringBuilderTest {
 
@@ -51,7 +53,8 @@ public class StringBuilderTest {
     runBasicTest(sb, sb, initialString);
   }
 
-  private void runBasicTest(Appendable appendable, CharSequence csq, String initialString) throws IOException {
+  private void runBasicTest(Appendable appendable, CharSequence csq, String initialString) throws
+      IOException {
     int offset = initialString.length();
     assertEquals(offset, csq.length());
     try {

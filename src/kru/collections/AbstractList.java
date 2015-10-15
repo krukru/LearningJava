@@ -6,7 +6,6 @@ import java.util.List;
 
 /**
  * Provides basic functionality for classes implmenting the List interface
- * @param <E>
  */
 public abstract class AbstractList<E> implements List<E> {
 
@@ -64,7 +63,7 @@ public abstract class AbstractList<E> implements List<E> {
     if (object instanceof List == false) {
       return false;
     }
-    List<E> secondList = (List<E>)object;
+    List<E> secondList = (List<E>) object;
     if (this.size() != secondList.size()) {
       return false;
     }

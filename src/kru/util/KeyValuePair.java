@@ -33,7 +33,8 @@ public class KeyValuePair<K, V> {
     }
     if (object instanceof KeyValuePair) {
       KeyValuePair secondKeyValuePair = (KeyValuePair) object;
-      return (this.key.equals(secondKeyValuePair.key) && this.value.equals(secondKeyValuePair.value));
+      return (this.key.equals(secondKeyValuePair.key) && this.value.equals(secondKeyValuePair
+          .value));
     } else {
       return false;
     }

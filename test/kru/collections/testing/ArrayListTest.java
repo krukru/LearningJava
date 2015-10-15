@@ -16,9 +16,9 @@
  */
 package kru.collections.testing;
 
-import kru.collections.ArrayList;
-
 import java.util.List;
+
+import kru.collections.ArrayList;
 
 
 public class ArrayListTest extends AbstractListTest {

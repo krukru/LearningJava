@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
-import kru.exception.runtimexception.NotImplementedException;
-
 public class HashSet<E> implements Set<E> {
 
   private HashMap<E, Object> hashmap = new HashMap<>();

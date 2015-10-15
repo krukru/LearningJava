@@ -1,14 +1,14 @@
 package kru.collections.testing;
 
+import org.junit.Test;
+
+import kru.collections.HashMap;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
-import kru.collections.HashMap;
-
-import org.junit.Test;
 
 public class HashMapTest {
 
@@ -80,7 +80,8 @@ public class HashMapTest {
   public void constructorTests() {
 /*    @SuppressWarnings("unchecked")
     // or it will generate a warning during build with Java 7
-        HashMap<String, Integer> map = new HashMap<>(new Map.Pair<>("a", 1), new Map.Pair<>("b", 2));
+        HashMap<String, Integer> map = new HashMap<>(new Map.Pair<>("a", 1), new Map.Pair<>("b",
+        2));
     assertEquals(2, map.getCount());
 
     map = new HashMap<>(map);

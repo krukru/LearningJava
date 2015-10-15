@@ -1,6 +1,5 @@
 package kru.util;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 public class StringBuilder implements CharSequence, Appendable {

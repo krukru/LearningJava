@@ -29,7 +29,8 @@ public class Tuple<K, V> {
     }
     if (object instanceof Tuple) {
       Tuple secondKeyValuePair = (Tuple) object;
-      return (this.item1.equals(secondKeyValuePair.item1) && this.item2.equals(secondKeyValuePair.item2));
+      return (this.item1.equals(secondKeyValuePair.item1) && this.item2.equals(secondKeyValuePair
+          .item2));
     } else {
       return false;
     }

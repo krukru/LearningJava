@@ -1,9 +1,11 @@
 package kru.collections;
 
-import kru.exception.runtimexception.NotImplementedException;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
-import java.lang.reflect.Array;
-import java.util.*;
+import kru.exception.runtimexception.NotImplementedException;
 
 public class ArrayList<E> extends AbstractList<E> {
 

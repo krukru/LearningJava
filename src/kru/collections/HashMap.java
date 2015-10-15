@@ -73,7 +73,8 @@ public class HashMap<K, V> implements Map<K, V> {
   }
 
   public boolean equals(HashMap secondMap) {
-    if (this.size() != secondMap.size() || this.getCurrentCapacity() != secondMap.getCurrentCapacity()) {
+    if (this.size() != secondMap.size() || this.getCurrentCapacity() != secondMap
+        .getCurrentCapacity()) {
       return false;
     }
     for (int i = 0; i < this.hashtable.length; i++) {
@@ -84,11 +85,9 @@ public class HashMap<K, V> implements Map<K, V> {
         if (areEqual == false) {
           return false;
         }
-      }
-      else if (firstBucket == null && secondBucket == null) {
+      } else if (firstBucket == null && secondBucket == null) {
         /* still need to check */
-      }
-      else {
+      } else {
         return false;
       }
     }
@@ -315,7 +314,8 @@ public class HashMap<K, V> implements Map<K, V> {
     }
 
     public boolean equals(Entry secondEntry) {
-      return (this.keyValuePair.getKey() == secondEntry.keyValuePair.getKey()) && (this.keyValuePair.getValue() == secondEntry.keyValuePair.getValue());
+      return (this.keyValuePair.getKey() == secondEntry.keyValuePair.getKey()) && (this
+          .keyValuePair.getValue() == secondEntry.keyValuePair.getValue());
     }
   }
 }

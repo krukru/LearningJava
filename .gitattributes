@@ -1,1 +1,3 @@
+# Prevents the README from getting merged
+# This way every branch has it's own description
 README.md merge=ours

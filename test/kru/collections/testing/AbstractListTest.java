@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -119,5 +120,108 @@ public abstract class AbstractListTest {
     assertEquals(iterator.next(), "M");
   }
 
+
+  @Test
+  public void iteratorTest() {
+    List<String> list = this.createList();
+    list.add("A");
+    list.add("B");
+    list.add("C");
+    list.add("D");
+    list.add("E");
+    list.add("F");
+    list.add("G");
+    list.add("H");
+    List<String> subList = list.subList(1, 4);
+    assertEquals(3, subList.size());
+    assertEquals("B", subList.get(0));
+    assertEquals("C", subList.get(1));
+    assertEquals("D", subList.get(2));
+  }
+
+  @Test
+  public void testContains() {
+    List<String> list = this.createList();
+    list.add("A");
+    list.add("B");
+    assertTrue(list.contains("A"));
+    assertTrue(list.contains("B"));
+    assertFalse(list.contains("C"));
+
+    java.util.ArrayList<String> collection = new java.util.ArrayList<>();
+    collection.add("1");
+    collection.add("2");
+    collection.add("3");
+    list.addAll(collection);
+    assertTrue(list.contains("1"));
+    assertTrue(list.contains("2"));
+    assertTrue(list.contains("3"));
+    assertFalse(list.contains("4"));
+    assertFalse(list.contains("12"));
+    assertEquals(5, list.size());
+  }
+
+  @Test
+  public void testToArray() {
+    List<String> list = this.createList();
+    assertArrayEquals(new String[]{}, list.toArray());
+    list.add("A");
+    list.add("B");
+    String[] expectedArray = new String[]{"A", "B"};
+    assertArrayEquals(expectedArray, list.toArray());
+  }
+
+  @Test
+  public void testRemove() {
+    List<String> list = this.createList();
+    String input = "A";
+    list.add(input);
+    list.remove(input);
+    assertEquals(0, list.size());
+    assertFalse(list.contains(input));
+    list.add(input);
+    assertTrue(list.contains(input));
+    assertEquals(1, list.size());
+    list.remove(input);
+    assertEquals(0, list.size());
+    assertFalse(list.contains(input));
+  }
+
+  @Test
+  public void testClearAndLastIndexOf() {
+    /* Yea, two tests in one. I'm terribly sorry. */
+    List<String> list = this.createList();
+    for (int i = 0; i < 100; i++) {
+      list.add("A");
+    }
+    assertEquals(100, list.size());
+    assertEquals(99, list.lastIndexOf("A"));
+    assertEquals(-1, list.lastIndexOf("B"));
+    list.clear();
+    assertEquals(0, list.size());
+    assertEquals(-1, list.lastIndexOf("A"));
+  }
+
+  @Test
+  public void testIteratorWithStartingIndex() {
+    List<String> list = this.createList();
+    list.add("A");
+    list.add("B");
+    list.add("C");
+    list.add("D");
+    list.add("E");
+    ListIterator<String> iterator = list.listIterator(1);
+    assertTrue(iterator.hasPrevious());
+    assertTrue(iterator.previous().equals("A"));
+    assertFalse(iterator.hasPrevious());
+    iterator.next();
+    assertTrue(iterator.next().equals("B"));
+    assertTrue(iterator.next().equals("C"));
+    assertTrue(iterator.next().equals("D"));
+    assertTrue(iterator.next().equals("E"));
+    assertTrue(iterator.previous().equals("E"));
+    iterator.next();
+    assertFalse(iterator.hasNext());
+  }
 
 }

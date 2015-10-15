@@ -1,3 +1,1 @@
-# Exclused README.md when merging branches
-# This way each branch can have it's own description
 README.md merge=ours

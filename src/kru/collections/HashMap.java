@@ -166,7 +166,7 @@ public class HashMap<K, V> implements Map<K, V> {
     for (int i = 0; i < hashtable.length; i++) {
       if (hashtable[i] != null) {
         int newKey = getBucketIndex(hashtable[i], newCapacity);
-        newHashtable[i] = hashtable[i];
+        newHashtable[newKey] = hashtable[i];
       }
     }
     this.hashtable = newHashtable;

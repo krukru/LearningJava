@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Provides basic functionality for classes implmenting the List interface
+ * Provides basic functionality for classes implementing the List interface
  */
 public abstract class AbstractList<E> implements List<E> {
 

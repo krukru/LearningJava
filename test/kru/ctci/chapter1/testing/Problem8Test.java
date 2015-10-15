@@ -1,10 +1,11 @@
-package kru.ctci.chapter1.tests;
+package kru.ctci.chapter1.testing;
 
 import org.junit.Test;
 
 import kru.ctci.chapter1.Problem8;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class Problem8Test {
 

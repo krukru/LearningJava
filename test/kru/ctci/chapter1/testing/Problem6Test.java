@@ -1,10 +1,10 @@
-package kru.ctci.chapter1.tests;
+package kru.ctci.chapter1.testing;
 
 import org.junit.Test;
 
 import kru.ctci.chapter1.Problem6;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class Problem6Test {
 

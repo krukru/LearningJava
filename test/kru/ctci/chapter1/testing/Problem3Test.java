@@ -1,11 +1,12 @@
-package kru.ctci.chapter1.tests;
+package kru.ctci.chapter1.testing;
 
 import org.junit.Test;
 
-import kru.collections.ArrayList;
 import kru.ctci.chapter1.Problem3;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class Problem3Test {
 

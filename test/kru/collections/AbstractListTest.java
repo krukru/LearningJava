@@ -16,17 +16,18 @@
  */
 package kru.collections;
 
-import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.ListIterator;
-
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 
 public abstract class AbstractListTest {
@@ -37,6 +38,21 @@ public abstract class AbstractListTest {
     List<String> result = this.createList();
     result.addAll(strings);
     return result;
+  }
+
+  @Test
+  public void iteratorRemoveTest() {
+    List<String> list = this.createList();
+    list.add("A");
+    list.add("B");
+    list.add("C");
+    list.add("D");
+    list.add("E");
+    Iterator<String> iterator = list.iterator();
+    iterator.remove();
+    iterator.remove();
+    assertEquals(3, list.size());
+    assertEquals("C", list.get(0));
   }
 
   @Test

@@ -1,6 +1,7 @@
 package kru.collections;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -19,6 +20,17 @@ public class ArrayList<E> extends AbstractList<E> {
 
   public ArrayList() {
     initArray(INITIAL_CAPACITY);
+  }
+
+  public ArrayList(int initialCapacity) {
+    initArray(INITIAL_CAPACITY);
+  }
+
+  public ArrayList(Collection<E> initialCollection) {
+    initArray(initialCollection.size() + INITIAL_CAPACITY);
+    for (E element : initialCollection) {
+      add(element);
+    }
   }
 
   private void initArray(int initialCapacity) {
@@ -185,20 +197,27 @@ public class ArrayList<E> extends AbstractList<E> {
 
   @Override
   public ListIterator<E> listIterator(int index) {
-    throw new NotImplementedException();
+    return new ArrayListIterator(this, index);
   }
 
   @Override
   public List<E> subList(int fromIndex, int toIndex) {
-    throw new NotImplementedException();
+    ArrayList<E> subList = new ArrayList<>(toIndex - fromIndex);
+    subList.addAll(Arrays.asList(array).subList(fromIndex, toIndex));
+    return subList;
   }
 
   private class ArrayListIterator implements ListIterator<E> {
 
-    int nextIndex = 0;
+    int nextIndex;
     ArrayList<E> arrayList;
 
     public ArrayListIterator(ArrayList<E> arrayList) {
+      this(arrayList, 0);
+    }
+
+    public ArrayListIterator(ArrayList<E> arrayList, int startingIndex) {
+      this.nextIndex = startingIndex;
       this.arrayList = arrayList;
     }
 

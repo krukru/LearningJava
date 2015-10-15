@@ -231,7 +231,16 @@ public class LinkedList<E> extends AbstractList<E> {
 
   @Override
   public int lastIndexOf(Object object) {
-    throw new NotImplementedException();
+    int lastIndex = size - 1;
+    LinkedListNode currentNode = tail;
+    while (currentNode != null) {
+      if (currentNode.element.equals(object)) {
+        break;
+      }
+      currentNode = currentNode.prev;
+      lastIndex -= 1;
+    }
+    return lastIndex;
   }
 
   @Override
@@ -241,12 +250,22 @@ public class LinkedList<E> extends AbstractList<E> {
 
   @Override
   public ListIterator<E> listIterator(int index) {
-    return null;
+    return new LinkedListIterator(this, index);
   }
 
   @Override
   public List<E> subList(int fromIndex, int toIndex) {
-    return null;
+    LinkedList<E> subList = new LinkedList<>();
+    Iterator<E> iterator = this.iterator();
+    int currentIndex;
+    for (currentIndex = 0; currentIndex < fromIndex; currentIndex++) {
+      iterator.next();
+    }
+    for (/* nop */; currentIndex < toIndex; currentIndex++) {
+      E item = iterator.next();
+      subList.add(item);
+    }
+    return subList;
   }
 
   private class LinkedListNode {
@@ -280,9 +299,19 @@ public class LinkedList<E> extends AbstractList<E> {
     private int nextIndex = 0;
 
     public LinkedListIterator(LinkedList<E> linkedList) {
+      this(linkedList, 0);
+    }
+
+    public LinkedListIterator(LinkedList<E> linkedList, int startingIndex) {
+      if (startingIndex < 0) {
+        throw new IndexOutOfBoundsException();
+      }
       this.linkedList = linkedList;
       this.nextNode = linkedList.root;
       this.previousNode = null;
+      while (nextIndex != startingIndex) {
+        next();
+      }
     }
 
     @Override

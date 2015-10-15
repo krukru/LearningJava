@@ -13,6 +13,17 @@ public class HashMapTest {
   private static int LOAD_COUNT = 50000;
 
   @Test
+  public void resizeTest() {
+    HashMap<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < LOAD_COUNT; i++) {
+      map.put(i, i);
+    }
+    for (int i = 0; i < LOAD_COUNT; i++) {
+      assertTrue(map.containsKey(i));
+    }
+  }
+
+  @Test
   public void basicTest() {
 
     HashMap<String, Integer> map = new HashMap<>();
@@ -129,28 +140,6 @@ public class HashMapTest {
     } catch (ConcurrentModificationException ex) {
       // expecting this
     }*/
-  }
-
-  @Test
-  public void pivotHashMapSpeedTest() {
-    long t0 = System.currentTimeMillis();
-    HashMap<Integer, Integer> map = new HashMap<>();
-    for (int i = 0; i < LOAD_COUNT; i++) {
-      map.put(i, i);
-    }
-    long t1 = System.currentTimeMillis();
-    System.out.println("kru.collections.HashMap " + (t1 - t0) + "ms");
-  }
-
-  @Test
-  public void javaHashMapSpeedTest() {
-    long t0 = System.currentTimeMillis();
-    java.util.HashMap<Integer, Integer> map = new java.util.HashMap<>();
-    for (int i = 0; i < LOAD_COUNT; i++) {
-      map.put(i, i);
-    }
-    long t1 = System.currentTimeMillis();
-    System.out.println("java.util.HashMap " + (t1 - t0) + "ms");
   }
 
   @Test

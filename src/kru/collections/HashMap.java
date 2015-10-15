@@ -38,18 +38,18 @@ public class HashMap<K, V> implements Map<K, V> {
   }
 
   private int getCurrentCapacity() {
-    return this.hashtable.length;
+    return hashtable.length;
   }
 
   @Override
   public void clear() {
-    initHashtable(this.initialCapacity);
+    initHashtable(initialCapacity);
   }
 
   @Override
   public boolean containsKey(Object key) {
     boolean containsKey;
-    Bucket bucket = this.getBucketForKey(key);
+    Bucket bucket = getBucketForKey(key);
     containsKey = bucket != null && bucket.containsKey(key);
     return containsKey;
   }
@@ -61,7 +61,7 @@ public class HashMap<K, V> implements Map<K, V> {
      * operation
      */
     boolean containsValue = false;
-    for (Bucket bucket : this.hashtable) {
+    for (Bucket bucket : hashtable) {
       if (bucket != null) {
         containsValue = bucket.containsValue(value);
         if (containsValue) {
@@ -73,12 +73,12 @@ public class HashMap<K, V> implements Map<K, V> {
   }
 
   public boolean equals(HashMap secondMap) {
-    if (this.size() != secondMap.size() || this.getCurrentCapacity() != secondMap
+    if (size != secondMap.size() || getCurrentCapacity() != secondMap
         .getCurrentCapacity()) {
       return false;
     }
-    for (int i = 0; i < this.hashtable.length; i++) {
-      Bucket firstBucket = this.hashtable[i];
+    for (int i = 0; i < hashtable.length; i++) {
+      Bucket firstBucket = hashtable[i];
       Bucket secondBucket = secondMap.hashtable[i];
       if (firstBucket != null && secondBucket != null) {
         boolean areEqual = firstBucket.equals(secondBucket);
@@ -102,7 +102,7 @@ public class HashMap<K, V> implements Map<K, V> {
   @Override
   public V get(Object key) {
     V result = null;
-    Bucket bucket = this.getBucketForKey(key);
+    Bucket bucket = getBucketForKey(key);
     if (bucket != null) {
       for (Entry entry : bucket) {
         if (entry.getKey().equals(key)) {
@@ -116,7 +116,7 @@ public class HashMap<K, V> implements Map<K, V> {
 
   @Override
   public boolean isEmpty() {
-    return (this.size == 0);
+    return (size == 0);
   }
 
   @Override
@@ -131,13 +131,13 @@ public class HashMap<K, V> implements Map<K, V> {
       throw new IllegalArgumentException("No null keys allowed");
     }
     Entry newEntry = new Entry(key, value);
-    int bucketIndex = this.getBucketIndex(key);
-    Bucket bucket = this.hashtable[bucketIndex];
+    int bucketIndex = getBucketIndex(key);
+    Bucket bucket = hashtable[bucketIndex];
     if (bucket == null) {
       Bucket newBucket = new Bucket();
       newBucket.add(newEntry);
-      this.hashtable[bucketIndex] = newBucket;
-      this.size += 1;
+      hashtable[bucketIndex] = newBucket;
+      size += 1;
     } else {
       /* Well, we need to check if a value already exists */
       boolean itemReplaced = false;
@@ -150,45 +150,46 @@ public class HashMap<K, V> implements Map<K, V> {
         }
       }
       if (itemReplaced == false) {
-        this.size += 1;
-        this.hashtable[bucketIndex].add(newEntry);
+        size += 1;
+        hashtable[bucketIndex].add(newEntry);
       }
     }
-    if (this.requiresResize()) {
-      this.resize();
+    if (requiresResize()) {
+      resize();
     }
     return oldValue;
   }
 
   private void resize() {
-    int newCapacity = this.getCurrentCapacity() * this.RESIZE_FACTOR;
+    int newCapacity = getCurrentCapacity() * RESIZE_FACTOR;
     Bucket[] newHashtable = (Bucket[]) Array.newInstance(Bucket.class, newCapacity);
-    for (int i = 0; i < this.hashtable.length; i++) {
-      newHashtable[i] = this.hashtable[i];
+    for (int i = 0; i < hashtable.length; i++) {
+      int newKey = getBucketIndex(hashtable[i], newCapacity);
+      newHashtable[i] = hashtable[i];
     }
     this.hashtable = newHashtable;
   }
 
   private boolean requiresResize() {
-    return this.size > this.getCurrentCapacity() * this.RESIZE_THRESHOLD;
+    return size > getCurrentCapacity() * RESIZE_THRESHOLD;
   }
 
   @Override
   public void putAll(Map<? extends K, ? extends V> map) {
     for (Map.Entry<? extends K, ? extends V> item : map.entrySet()) {
-      this.put(item.getKey(), item.getValue());
+      put(item.getKey(), item.getValue());
     }
   }
 
   @Override
   public V remove(Object key) {
     V result = null;
-    int bucketIndex = this.getBucketIndex(key);
-    Bucket bucket = this.hashtable[bucketIndex];
+    int bucketIndex = getBucketIndex(key);
+    Bucket bucket = hashtable[bucketIndex];
     if (bucket != null) {
       Entry removedEntry = bucket.remove(key);
       if (removedEntry != null) {
-        this.size -= 1;
+        size -= 1;
         result = removedEntry.getValue();
       }
     }
@@ -197,7 +198,7 @@ public class HashMap<K, V> implements Map<K, V> {
 
   @Override
   public int size() {
-    return this.size;
+    return size;
   }
 
   @Override
@@ -205,12 +206,16 @@ public class HashMap<K, V> implements Map<K, V> {
     throw new NotImplementedException();
   }
 
+  private int getBucketIndex(Object key, int capacity) {
+    return key.hashCode() % capacity;
+  }
+
   private int getBucketIndex(Object key) {
-    return key.hashCode() % this.getCurrentCapacity();
+    return getBucketIndex(key, getCurrentCapacity());
   }
 
   private Bucket getBucketForKey(Object key) {
-    return this.hashtable[getBucketIndex(key)];
+    return hashtable[getBucketIndex(key)];
   }
 
   class Bucket implements Iterable<Entry> {
@@ -218,20 +223,20 @@ public class HashMap<K, V> implements Map<K, V> {
 
     public void add(K key, V value) {
       Entry newEntry = new Entry(key, value);
-      this.add(newEntry);
+      add(newEntry);
     }
 
     public void add(Entry entry) {
-      this.entries.add(entry);
+      entries.add(entry);
     }
 
     public Entry remove(Object key) {
       Entry removedEntry = null;
       int index = 0;
-      for (Entry entry : this.entries) {
+      for (Entry entry : entries) {
         if (entry.getKey().equals(key)) {
           removedEntry = entry;
-          this.entries.remove(index);
+          entries.remove(index);
           break;
         }
         index += 1;
@@ -240,10 +245,10 @@ public class HashMap<K, V> implements Map<K, V> {
     }
 
     public boolean equals(Bucket secondBucket) {
-      if (this.size() != secondBucket.size()) {
+      if (size != secondBucket.size()) {
         return false;
       }
-      ListIterator<Entry> firstBucketIterator = this.entries.listIterator();
+      ListIterator<Entry> firstBucketIterator = entries.listIterator();
       ListIterator<Entry> secondBucketIterator = secondBucket.entries.listIterator();
       while (firstBucketIterator.hasNext()) {
         Entry firstEntry = firstBucketIterator.next();
@@ -256,7 +261,7 @@ public class HashMap<K, V> implements Map<K, V> {
     }
 
     public int size() {
-      return this.entries.size();
+      return entries.size();
     }
 
     public boolean containsValue(Object value) {
@@ -283,7 +288,7 @@ public class HashMap<K, V> implements Map<K, V> {
 
     @Override
     public Iterator<Entry> iterator() {
-      return this.entries.iterator();
+      return entries.iterator();
     }
   }
 
@@ -297,25 +302,25 @@ public class HashMap<K, V> implements Map<K, V> {
 
     @Override
     public K getKey() {
-      return this.keyValuePair.getKey();
+      return keyValuePair.getKey();
     }
 
     @Override
     public V getValue() {
-      return this.keyValuePair.getValue();
+      return keyValuePair.getValue();
     }
 
     @Override
     public V setValue(V value) {
       /* Contract says we should return the old value */
-      V oldValue = this.keyValuePair.getValue();
-      this.keyValuePair.setValue(value);
+      V oldValue = keyValuePair.getValue();
+      keyValuePair.setValue(value);
       return oldValue;
     }
 
     public boolean equals(Entry secondEntry) {
-      return (this.keyValuePair.getKey() == secondEntry.keyValuePair.getKey()) && (this
-          .keyValuePair.getValue() == secondEntry.keyValuePair.getValue());
+      return (keyValuePair.getKey() == secondEntry.keyValuePair.getKey()) && (keyValuePair
+          .getValue() == secondEntry.keyValuePair.getValue());
     }
   }
 }

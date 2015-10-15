@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="learningjava" default="all">
+
+
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.tox/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module LearningJava -->
+  
+  <dirname property="module.learningjava.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.learningjava" value="-encoding UTF-8 -source 1.7 ${compiler.args}"/>
+  
+  <property name="learningjava.output.dir" value="${module.learningjava.basedir}/out/production/LearningJava"/>
+  <property name="learningjava.testoutput.dir" value="${module.learningjava.basedir}/out/test/LearningJava"/>
+  
+  <path id="learningjava.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+
+  <path id="learningjava.module.production.classpath">
+    <pathelement location="lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="lib/hamcrest-library-1.3.jar"/>
+    <pathelement location="lib/junit-4.11.jar"/>
+  </path>
+
+  <path id="learningjava.runtime.production.module.classpath">
+    <pathelement location="${learningjava.output.dir}"/>
+    <pathelement location="lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="lib/hamcrest-library-1.3.jar"/>
+    <pathelement location="lib/junit-4.11.jar"/>
+  </path>
+
+  <path id="learningjava.module.classpath">
+    <pathelement location="${learningjava.output.dir}"/>
+    <pathelement location="lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="lib/hamcrest-library-1.3.jar"/>
+    <pathelement location="lib/junit-4.11.jar"/>
+  </path>
+
+  <path id="learningjava.runtime.module.classpath">
+    <pathelement location="${learningjava.testoutput.dir}"/>
+    <pathelement location="${learningjava.output.dir}"/>
+    <pathelement location="lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="lib/hamcrest-library-1.3.jar"/>
+    <pathelement location="lib/junit-4.11.jar"/>
+  </path>
+
+  
+  <patternset id="excluded.from.module.learningjava">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.learningjava">
+    <patternset refid="excluded.from.module.learningjava"/>
+  </patternset>
+  
+  <path id="learningjava.module.sourcepath">
+    <dirset dir="${module.learningjava.basedir}">
+      <include name="src"/>
+      <include name="lib"/>
+    </dirset>
+  </path>
+
+  <path id="learningjava.module.test.sourcepath">
+    <dirset dir="${module.learningjava.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+
+
+  <target name="compile.module.learningjava" depends="compile.module.learningjava.production,compile.module.learningjava.tests" description="Compile module LearningJava"/>
+
+  <target name="compile.module.learningjava.production" description="Compile module LearningJava; production classes">
+    <mkdir dir="${learningjava.output.dir}"/>
+    <javac destdir="${learningjava.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.learningjava}"/>
+      <bootclasspath refid="learningjava.module.bootclasspath"/>
+      <classpath refid="learningjava.module.production.classpath"/>
+      <src refid="learningjava.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.learningjava"/>
+    </javac>
+
+    <copy todir="${learningjava.output.dir}">
+      <fileset dir="${module.learningjava.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.learningjava.basedir}/lib">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="compile.module.learningjava.tests" depends="compile.module.learningjava.production" description="compile module LearningJava; test classes" unless="skip.tests">
+    <mkdir dir="${learningjava.testoutput.dir}"/>
+    <javac destdir="${learningjava.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.learningjava}"/>
+      <bootclasspath refid="learningjava.module.bootclasspath"/>
+      <classpath refid="learningjava.module.classpath"/>
+      <src refid="learningjava.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.learningjava"/>
+    </javac>
+
+    <copy todir="${learningjava.testoutput.dir}">
+      <fileset dir="${module.learningjava.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="clean.module.learningjava" description="cleanup module">
+    <delete dir="${learningjava.output.dir}"/>
+    <delete dir="${learningjava.testoutput.dir}"/>
+  </target>
+
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+
+  <target name="clean" depends="clean.module.learningjava" description="cleanup all"/>
+
+  <target name="build.modules" depends="init, clean, compile.module.learningjava" description="build all modules"/>
+
+
+  <path id="classpath.base" />
+
+
+  <path id="classpath.test">
+    <pathelement location="lib/junit-4.11.jar" />
+    <pathelement location="lib/hamcrest-core-1.3.jar" />
+    <pathelement location="${learningjava.output.dir}"/>
+    <path refid="classpath.base" />
+  </path>
+  <!-- Test and build all files  -->
+  <!-- To run this: use "ant" (default) or "ant run" -->
+  <target name="test" depends="all">
+    <junit printsummary="yes" showoutput="true" haltonfailure="yes">
+      <classpath>
+        <path refid="classpath.test" />
+        <pathelement location="${learningjava.testoutput.dir}"/>
+      </classpath>
+      <formatter type="brief" usefile="false" />
+      <batchtest>
+        <fileset dir="test">
+          <include name="**/*Test*.java"/>
+          <exclude name="**/Abstract*.java"/>
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
+
+  <target name="all" depends="build.modules" description="build all"/>
+</project>

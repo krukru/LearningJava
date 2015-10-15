@@ -210,6 +210,7 @@ public class ArrayList<E> extends AbstractList<E> {
   private class ArrayListIterator implements ListIterator<E> {
 
     int nextIndex;
+    Integer lastIndex = null;
     ArrayList<E> arrayList;
 
     public ArrayListIterator(ArrayList<E> arrayList) {
@@ -229,6 +230,7 @@ public class ArrayList<E> extends AbstractList<E> {
     @Override
     public E next() {
       E element = arrayList.array[nextIndex];
+      this.lastIndex = nextIndex;
       this.nextIndex += 1;
       return element;
     }
@@ -241,6 +243,7 @@ public class ArrayList<E> extends AbstractList<E> {
     @Override
     public E previous() {
       E element = arrayList.array[nextIndex - 1];
+      this.lastIndex = nextIndex;
       this.nextIndex -= 1;
       return element;
     }
@@ -257,17 +260,27 @@ public class ArrayList<E> extends AbstractList<E> {
 
     @Override
     public void remove() {
-      arrayList.remove(nextIndex);
+      if (lastIndex == null) {
+        throw new IllegalStateException();
+      }
+      arrayList.remove(lastIndex.intValue());
+      lastIndex = null;
+      nextIndex -= 1;
     }
 
     @Override
     public void set(E e) {
-      arrayList.array[nextIndex] = e;
+      if (lastIndex == null) {
+        throw new IllegalStateException();
+      }
+      arrayList.array[lastIndex] = e;
+      lastIndex = null;
     }
 
     @Override
     public void add(E e) {
       arrayList.add(nextIndex, e);
+      lastIndex = null;
     }
   }
 }

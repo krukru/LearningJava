@@ -362,8 +362,9 @@ public class LinkedList<E> extends AbstractList<E> {
 
     @Override
     public void remove() {
-      if (this.lastAccessedElement != null) {
-        this.lastAccessedElement.remove();
+      if (lastAccessedElement != null) {
+        linkedList.internalRemove(lastAccessedElement);
+        this.lastAccessedElement = null;
       }
     }
 
@@ -371,6 +372,7 @@ public class LinkedList<E> extends AbstractList<E> {
     public void set(E element) {
       if (this.lastAccessedElement != null) {
         this.lastAccessedElement.element = element;
+        this.lastAccessedElement = null;
       }
     }
 
@@ -380,6 +382,7 @@ public class LinkedList<E> extends AbstractList<E> {
       this.nextNode = newNode;
       this.previousNode = this.nextNode.prev;
       this.linkedList.internalAdd(nextIndex, newNode);
+      this.lastAccessedElement = null;
     }
   }
 }

@@ -25,6 +25,6 @@ public class ArrayListTest extends AbstractListTest {
 
   @Override
   protected List<String> createList() {
-    return new ArrayList<String>();
+    return new ArrayList<>();
   }
 }

@@ -47,7 +47,7 @@ public class Problem6Test {
     /* Well this is obviously a horrible test
      * because who knows if this produces the correct expectedMatrix.
      * However, it's a simple example - so trust me with this one. */
-    for (int i = 0; i< 5; i++) {
+    for (int i = 0; i < 5; i++) {
       for (int j = 0; j < 5; j++) {
         expectedMatrix[j][4 - i] = i * 5 + j;
       }
@@ -57,8 +57,8 @@ public class Problem6Test {
 
   @Test
   public void evaluationTest1() {
-    int[][] inputMatrix = {{1,2},{3,4}};
-    int[][] expectedMatrix = {{3,1},{4,2}};
+    int[][] inputMatrix = {{1, 2}, {3, 4}};
+    int[][] expectedMatrix = {{3, 1}, {4, 2}};
     p6.rotateInPlace(inputMatrix);
     assertArrayEquals(expectedMatrix, inputMatrix);
   }

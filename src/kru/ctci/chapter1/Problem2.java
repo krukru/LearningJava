@@ -3,11 +3,11 @@ package kru.ctci.chapter1;
 public class Problem2 {
 
   public void reverse(char[] array) {
-   int arrayLength = find('\0', array) - 1;
+    int arrayLength = find('\0', array) - 1;
     for (int i = 0; i < arrayLength / 2; i++) {
-      char tempChacater = array[i];
+      char tempCharacter = array[i];
       array[i] = array[arrayLength - 1 - i];
-      array[arrayLength - 1 - i] = tempChacater;
+      array[arrayLength - 1 - i] = tempCharacter;
     }
   }
 

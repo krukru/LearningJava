@@ -12,6 +12,8 @@ import static org.junit.Assert.assertTrue;
 
 public class HashMapTest {
 
+  private static int LOAD_COUNT = 50000;
+
   @Test
   public void basicTest() {
 
@@ -130,8 +132,6 @@ public class HashMapTest {
       // expecting this
     }*/
   }
-
-  private static int LOAD_COUNT = 50000;
 
   @Test
   public void pivotHashMapSpeedTest() {

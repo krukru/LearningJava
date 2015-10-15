@@ -8,8 +8,7 @@ public class Problem1 {
     for (char c : input.toCharArray()) {
       if (lookup.contains(c)) {
         return false;
-      }
-      else {
+      } else {
         lookup.add(c);
       }
     }

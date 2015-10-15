@@ -95,13 +95,8 @@ public class Problem3 {
   }
 
   /**
-   *
-   * This method is slightly slower then the Ascii version, but supported
-   * a broader range of characters
-   *
-   * @param s1
-   * @param s2
-   * @return
+   * This method is slightly slower then the Ascii version, but supported a broader range of
+   * characters
    */
   private boolean arePermutations_Unicode(String s1, String s2) {
     HashMap<Character, Integer> map = new HashMap<>();
@@ -123,13 +118,11 @@ public class Problem3 {
       char lookupCharacter = Character.toLowerCase(c);
       if (map.containsKey(lookupCharacter) == false) {
         return false;
-      }
-      else {
+      } else {
         int numberOfOccurences = map.get(lookupCharacter);
         if (numberOfOccurences == 1) {
           map.remove(lookupCharacter);
-        }
-        else {
+        } else {
           map.put(lookupCharacter, numberOfOccurences - 1);
         }
       }

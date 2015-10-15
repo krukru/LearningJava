@@ -24,6 +24,6 @@ public class LinkedListTest extends AbstractListTest {
 
   @Override
   protected List<String> createList() {
-    return new LinkedList<String>();
+    return new LinkedList<>();
   }
 }

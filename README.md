@@ -1,7 +1,7 @@
-# LearningJava
+ # LearningJava
+ A place to hold all my java tasks and projects
+ 
+ Master branch.
+ Code here is considered to be fully tested, working, optimized and what not.
 
-This readme is unique to this branch.
-When merging with other branches, it won't get updated.
-
-This way each branch has a description in the readme.
-Hopefully
+ Yea I know. It's empty.

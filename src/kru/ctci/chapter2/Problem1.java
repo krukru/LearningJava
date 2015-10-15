@@ -8,7 +8,7 @@ import kru.collections.LinkedList;
 public class Problem1 {
   public <E> void removeDuplicates(LinkedList<E> list) {
     HashSet<E> lookup = new HashSet<>();
-    for (Iterator<E> it = list.iterator(); it.hasNext(); it.next()) {
+    for (Iterator<E> it = list.iterator(); it.hasNext(); /* nop */) {
       E element = it.next();
       if (lookup.contains(element)) {
         it.remove();

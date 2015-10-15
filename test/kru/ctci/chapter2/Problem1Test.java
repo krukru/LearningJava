@@ -21,7 +21,7 @@ public class Problem1Test {
       list.add(rnd.nextInt(50));
     }
     p1.removeDuplicates(list);
-    HashSet<Integer> lookup = new HashSet<>();
+    java.util.HashSet<Integer> lookup = new java.util.HashSet<>();
     for (int element : list) {
       if (lookup.contains(element)) {
         fail("Duplicate found");
@@ -30,5 +30,6 @@ public class Problem1Test {
         lookup.add(element);
       }
     }
+    System.out.print(false);
   }
 }

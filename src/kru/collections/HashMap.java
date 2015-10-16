@@ -209,8 +209,12 @@ public class HashMap<K, V> implements Map<K, V> {
     throw new NotImplementedException();
   }
 
+  private int getBucketIndex(Object key, int capacity) {
+    return key.hashCode() % capacity;
+  }
+
   private int getBucketIndex(Object key) {
-    return key.hashCode() % getCurrentCapacity();
+    return getBucketIndex(key, getCurrentCapacity());
   }
 
   private Bucket getBucketForKey(Object key) {

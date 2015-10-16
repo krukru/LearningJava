@@ -1,8 +1,6 @@
 # LearningJava
 A place to hold all my java tasks and projects
 
-The development branch where all the new stuff is added. Code in dev branch could be complete,
-but has to stay here until it's tested - then it goes into master.
+Topic branch for the second chapter of Cracking the Coding Interview.
 
-[![Build Status](https://travis-ci.org/krukru/LearningJava.svg?branch=dev)](https://travis-ci.org/krukru/LearningJava)
-[![Code Coverage](https://img.shields.io/badge/coverage-79%25-green.svg)](https://shields.io)
+[![Build Status](https://travis-ci.org/krukru/LearningJava.svg?branch=ctci/wip/chapter2)](https://travis-ci.org/krukru/LearningJava)

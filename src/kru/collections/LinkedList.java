@@ -290,6 +290,10 @@ public class LinkedList<E> extends AbstractList<E> {
     return new LinkedListIterator(this, index);
   }
 
+  public ListIterator<E> listIteratorFromTail() {
+    return new LinkedListIterator(this, size);
+  }
+
   @Override
   public List<E> subList(int fromIndex, int toIndex) {
     LinkedList<E> subList = new LinkedList<>();
@@ -340,14 +344,21 @@ public class LinkedList<E> extends AbstractList<E> {
     }
 
     public LinkedListIterator(LinkedList<E> linkedList, int startingIndex) {
-      if (startingIndex < 0) {
+      if (startingIndex < 0 || startingIndex > size()) {
         throw new IndexOutOfBoundsException();
       }
       this.linkedList = linkedList;
-      this.nextNode = linkedList.root;
-      this.previousNode = null;
-      while (nextIndex != startingIndex) {
-        next();
+      if (startingIndex == linkedList.size()) {
+        /* special case, tail requested */
+        this.nextNode = null;
+        this.previousNode = linkedList.tail;
+      }
+      else {
+        this.nextNode = linkedList.root;
+        this.previousNode = null;
+        while (nextIndex != startingIndex) {
+          next();
+        }
       }
     }
 

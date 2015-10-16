@@ -70,4 +70,42 @@ public class Problem5Test {
     LinkedList<Integer> result = p5.sumDecimalRepresentation(list1, list2);
     assertEquals(expectedList, result);
   }
+
+  @Test
+  public void bookExample1() {
+    /* number1 is 716 */
+    list1.add(7);
+    list1.add(1);
+    list1.add(6);
+    /* number2 is 592 */
+    list2.add(5);
+    list2.add(9);
+    list2.add(2);
+    LinkedList<Integer> expectedList = new LinkedList<>();
+    /* sum is 123983 */
+    expectedList.add(2);
+    expectedList.add(1);
+    expectedList.add(9);
+    LinkedList<Integer> result = p5.sumReverseDecimalRepresentation(list1, list2);
+    assertEquals(expectedList, result);
+  }
+
+  @Test
+  public void bookExample2() {
+    /* number1 is 716 */
+    list1.add(6);
+    list1.add(1);
+    list1.add(7);
+    /* number2 is 592 */
+    list2.add(2);
+    list2.add(9);
+    list2.add(5);
+    LinkedList<Integer> expectedList = new LinkedList<>();
+    /* sum is 123983 */
+    expectedList.add(9);
+    expectedList.add(1);
+    expectedList.add(2);
+    LinkedList<Integer> result = p5.sumDecimalRepresentation(list1, list2);
+    assertEquals(expectedList, result);
+  }
 }

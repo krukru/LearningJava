@@ -290,7 +290,7 @@ public class LinkedList<E> extends AbstractList<E> {
     return new LinkedListIterator(this, index);
   }
 
-  public ListIterator<E> listIteratorFromTail() {
+  public ListIterator<E> tailListIterator() {
     return new LinkedListIterator(this, size);
   }
 

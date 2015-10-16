@@ -9,8 +9,6 @@ Producion branch. Code here is considered to be complete, tested and final...Unt
 
 [![Code Coverage](https://img.shields.io/badge/kru.ctci.chapter1%20coverage-94%25-brightgreen.svg)](https://shields.io)
 
-[![Code Coverage](https://img.shields.io/badge/kru.ctci.chapter1%20coverage-94%25-brightgreen.svg)](https://shields.io)
-
 [![Code Coverage](https://img.shields.io/badge/kru.ctci.chapter2%20coverage-91%25-brightgreen.svg)](https://shields.io)
 
-[![Code Coverage](https://img.shields.io/badge/kru.ctci.chapter2%20coverage-89%25-green.svg)](https://shields.io)
+[![Code Coverage](https://img.shields.io/badge/kru.util%20coverage-89%25-green.svg)](https://shields.io)

@@ -16,14 +16,94 @@
  */
 package kru.collections;
 
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 
-import kru.collections.LinkedList;
+import org.junit.Test;
+
+import java.util.List;
 
 public class LinkedListTest extends AbstractListTest {
 
   @Override
   protected List<String> createList() {
     return new LinkedList<>();
+  }
+
+  @Test
+  public void testAddFirst() {
+    LinkedList<Integer> list = new LinkedList<>();
+    list.addFirst(2);
+    list.add(3);
+    list.addFirst(1);
+    assertEquals(3, list.size());
+    assertEquals(1, list.get(0).intValue());
+    assertEquals(2, list.get(1).intValue());
+    assertEquals(3, list.get(2).intValue());
+  }
+
+  @Test
+  public void testAddLast() {
+    LinkedList<Integer> list = new LinkedList<>();
+    list.addLast(1);
+    list.addLast(2);
+    list.addLast(3);
+    assertEquals(3, list.size());
+    assertEquals(1, list.get(0).intValue());
+    assertEquals(2, list.get(1).intValue());
+    assertEquals(3, list.get(2).intValue());
+  }
+
+  @Test
+  public void testRemoveFirst() {
+    LinkedList<Integer> list = new LinkedList<>();
+    list.add(1);
+    list.add(2);
+    list.add(3);
+    assertEquals(3, list.size());
+    list.removeFirst();
+    assertEquals(2, list.size());
+    assertEquals(2, list.get(0).intValue());
+    assertEquals(3, list.get(1).intValue());
+    list.removeFirst();
+    assertEquals(1, list.size());
+    assertEquals(3, list.get(0).intValue());
+    list.removeFirst();
+    assertEquals(0, list.size());
+  }
+
+  @Test
+  public void testRemoveLast() {
+    LinkedList<Integer> list = new LinkedList<>();
+    list.add(1);
+    list.add(2);
+    list.add(3);
+    assertEquals(3, list.size());
+    list.removeLast();
+    assertEquals(2, list.size());
+    assertEquals(1, list.get(0).intValue());
+    assertEquals(2, list.get(1).intValue());
+    list.removeLast();
+    assertEquals(1, list.size());
+    assertEquals(1, list.get(0).intValue());
+    list.removeLast();
+    assertEquals(0, list.size());
+  }
+
+  @Test
+  public void testGetFirst() {
+    LinkedList<Integer> list = new LinkedList<>();
+    list.add(1);
+    list.add(2);
+    list.add(3);
+    assertEquals(1, list.getFirst().intValue());
+  }
+
+  @Test
+  public void testGetLast() {
+    LinkedList<Integer> list = new LinkedList<>();
+    list.add(1);
+    list.add(2);
+    list.add(3);
+    assertEquals(3, list.getLast().intValue());
   }
 }

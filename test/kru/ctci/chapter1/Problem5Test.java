@@ -1,10 +1,8 @@
 package kru.ctci.chapter1;
 
-import org.junit.Test;
-
-import kru.ctci.chapter1.Problem5;
-
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 public class Problem5Test {
 

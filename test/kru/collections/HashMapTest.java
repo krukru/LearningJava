@@ -1,18 +1,27 @@
 package kru.collections;
 
-import org.junit.Test;
-
-import kru.collections.HashMap;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Test;
+
 public class HashMapTest {
 
   private static int LOAD_COUNT = 50000;
+
+  @Test
+  public void resizeTest() {
+    HashMap<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < LOAD_COUNT; i++) {
+      map.put(i, i);
+    }
+    for (int i = 0; i < LOAD_COUNT; i++) {
+      assertTrue(map.containsKey(i));
+    }
+  }
 
   @Test
   public void basicTest() {
@@ -131,28 +140,6 @@ public class HashMapTest {
     } catch (ConcurrentModificationException ex) {
       // expecting this
     }*/
-  }
-
-  @Test
-  public void pivotHashMapSpeedTest() {
-    long t0 = System.currentTimeMillis();
-    HashMap<Integer, Integer> map = new HashMap<>();
-    for (int i = 0; i < LOAD_COUNT; i++) {
-      map.put(i, i);
-    }
-    long t1 = System.currentTimeMillis();
-    System.out.println("kru.collections.HashMap " + (t1 - t0) + "ms");
-  }
-
-  @Test
-  public void javaHashMapSpeedTest() {
-    long t0 = System.currentTimeMillis();
-    java.util.HashMap<Integer, Integer> map = new java.util.HashMap<>();
-    for (int i = 0; i < LOAD_COUNT; i++) {
-      map.put(i, i);
-    }
-    long t1 = System.currentTimeMillis();
-    System.out.println("java.util.HashMap " + (t1 - t0) + "ms");
   }
 
   @Test

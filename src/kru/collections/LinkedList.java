@@ -79,6 +79,43 @@ public class LinkedList<E> extends AbstractList<E> {
     internalAdd(index, node);
   }
 
+  public void addFirst(E element) {
+    LinkedListNode newNode = new LinkedListNode(element);
+    internalAdd(0, newNode);
+  }
+
+  public void addLast(E element) {
+    add(element);
+  }
+
+  public void removeFirst() {
+    if (root == null) {
+      throw new NoSuchElementException();
+    }
+    internalRemove(root);
+  }
+
+  public void removeLast() {
+    if (tail == null) {
+      throw new NoSuchElementException();
+    }
+    internalRemove(tail);
+  }
+
+  public E getFirst() {
+    if (root == null) {
+      throw new NoSuchElementException();
+    }
+    return root.element;
+  }
+
+  public E getLast() {
+    if (tail == null) {
+      throw new NoSuchElementException();
+    }
+    return tail.element;
+  }
+
   private void internalAdd(int index, LinkedListNode node) {
     final int indexOfLastElement = this.size;
     if (index > indexOfLastElement) {
@@ -253,6 +290,10 @@ public class LinkedList<E> extends AbstractList<E> {
     return new LinkedListIterator(this, index);
   }
 
+  public ListIterator<E> tailListIterator() {
+    return new LinkedListIterator(this, size);
+  }
+
   @Override
   public List<E> subList(int fromIndex, int toIndex) {
     LinkedList<E> subList = new LinkedList<>();
@@ -303,14 +344,21 @@ public class LinkedList<E> extends AbstractList<E> {
     }
 
     public LinkedListIterator(LinkedList<E> linkedList, int startingIndex) {
-      if (startingIndex < 0) {
+      if (startingIndex < 0 || startingIndex > size()) {
         throw new IndexOutOfBoundsException();
       }
       this.linkedList = linkedList;
-      this.nextNode = linkedList.root;
-      this.previousNode = null;
-      while (nextIndex != startingIndex) {
-        next();
+      if (startingIndex == linkedList.size()) {
+        /* special case, tail requested */
+        this.nextNode = null;
+        this.previousNode = linkedList.tail;
+      }
+      else {
+        this.nextNode = linkedList.root;
+        this.previousNode = null;
+        while (nextIndex != startingIndex) {
+          next();
+        }
       }
     }
 
@@ -362,8 +410,9 @@ public class LinkedList<E> extends AbstractList<E> {
 
     @Override
     public void remove() {
-      if (this.lastAccessedElement != null) {
-        this.lastAccessedElement.remove();
+      if (lastAccessedElement != null) {
+        linkedList.internalRemove(lastAccessedElement);
+        this.lastAccessedElement = null;
       }
     }
 
@@ -371,6 +420,7 @@ public class LinkedList<E> extends AbstractList<E> {
     public void set(E element) {
       if (this.lastAccessedElement != null) {
         this.lastAccessedElement.element = element;
+        this.lastAccessedElement = null;
       }
     }
 
@@ -380,6 +430,7 @@ public class LinkedList<E> extends AbstractList<E> {
       this.nextNode = newNode;
       this.previousNode = this.nextNode.prev;
       this.linkedList.internalAdd(nextIndex, newNode);
+      this.lastAccessedElement = null;
     }
   }
 }

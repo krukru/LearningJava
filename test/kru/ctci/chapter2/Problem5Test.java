@@ -1,6 +1,6 @@
 package kru.ctci.chapter2;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -16,9 +16,9 @@ public class Problem5Test {
   public void testSumReverseDecimalRepresentation1() {
     list1.add(0);
     list2.add(0);
-    LinkedList<Integer> expetedList = new LinkedList<>();
-    expetedList.add(0);
-    assertEquals(expetedList, p5.sumReverseDecimalRepresentation(list1, list2));
+    LinkedList<Integer> expectedList = new LinkedList<>();
+    expectedList.add(0);
+    assertEquals(expectedList, p5.sumReverseDecimalRepresentation(list1, list2));
   }
 
   @Test
@@ -34,15 +34,15 @@ public class Problem5Test {
     list2.add(5);
     list2.add(2);
     list2.add(7);
-    LinkedList<Integer> expetedList = new LinkedList<>();
+    LinkedList<Integer> expectedList = new LinkedList<>();
     /* sum is 655046 */
-    expetedList.add(6);
-    expetedList.add(4);
-    expetedList.add(0);
-    expetedList.add(5);
-    expetedList.add(5);
-    expetedList.add(6);
-    assertEquals(expetedList, p5.sumReverseDecimalRepresentation(list1, list2));
+    expectedList.add(6);
+    expectedList.add(4);
+    expectedList.add(0);
+    expectedList.add(5);
+    expectedList.add(5);
+    expectedList.add(6);
+    assertEquals(expectedList, p5.sumReverseDecimalRepresentation(list1, list2));
   }
 
   @Test
@@ -58,14 +58,14 @@ public class Problem5Test {
     list2.add(5);
     list2.add(2);
     list2.add(7);
-    LinkedList<Integer> expetedList = new LinkedList<>();
+    LinkedList<Integer> expectedList = new LinkedList<>();
     /* sum is 123983 */
-    expetedList.add(1);
-    expetedList.add(2);
-    expetedList.add(3);
-    expetedList.add(9);
-    expetedList.add(8);
-    expetedList.add(3);
-    assertEquals(expetedList, p5.sumReverseDecimalRepresentation(list1, list2));
+    expectedList.add(1);
+    expectedList.add(2);
+    expectedList.add(3);
+    expectedList.add(9);
+    expectedList.add(8);
+    expectedList.add(3);
+    assertEquals(expectedList, p5.sumReverseDecimalRepresentation(list1, list2));
   }
 }

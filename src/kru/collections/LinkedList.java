@@ -225,6 +225,8 @@ public class LinkedList<E> extends AbstractList<E> {
       killPointer.next = null;
       killPointer = killPointer.prev;
     }
+    this.root = null;
+    this.tail = null;
   }
 
   @Override

@@ -111,7 +111,7 @@ public class Stack<E> extends AbstractList<E> {
   }
 
   public E peek() {
-    if (dataCollection.size() == 0) {
+    if (dataCollection.isEmpty()) {
       throw new NoSuchElementException();
     }
     return dataCollection.get(dataCollection.size() - 1);

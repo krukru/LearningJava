@@ -20,13 +20,14 @@ public class MultiQueueInstance<E> {
 
   public void enqueue(E element) {
     container.data[tailIndex] = element;
+    tailIndex += 1;
     if (needToResize()) {
       container.resize();
     }
   }
 
   private boolean needToResize() {
-    return tailIndex == endIndex;
+    return tailIndex > endIndex;
   }
 
   public E dequeue() {

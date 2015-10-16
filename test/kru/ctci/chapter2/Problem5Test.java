@@ -82,7 +82,7 @@ public class Problem5Test {
     list2.add(9);
     list2.add(2);
     LinkedList<Integer> expectedList = new LinkedList<>();
-    /* sum is 123983 */
+    /* sum is 219 */
     expectedList.add(2);
     expectedList.add(1);
     expectedList.add(9);
@@ -101,7 +101,7 @@ public class Problem5Test {
     list2.add(9);
     list2.add(5);
     LinkedList<Integer> expectedList = new LinkedList<>();
-    /* sum is 123983 */
+    /* sum is 219 */
     expectedList.add(9);
     expectedList.add(1);
     expectedList.add(2);

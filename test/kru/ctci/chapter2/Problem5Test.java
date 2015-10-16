@@ -42,7 +42,8 @@ public class Problem5Test {
     expectedList.add(5);
     expectedList.add(5);
     expectedList.add(6);
-    assertEquals(expectedList, p5.sumReverseDecimalRepresentation(list1, list2));
+    LinkedList<Integer> sum = p5.sumReverseDecimalRepresentation(list1, list2);
+    assertEquals(expectedList, sum);
   }
 
   @Test
@@ -66,6 +67,7 @@ public class Problem5Test {
     expectedList.add(9);
     expectedList.add(8);
     expectedList.add(3);
-    assertEquals(expectedList, p5.sumReverseDecimalRepresentation(list1, list2));
+    LinkedList<Integer> result = p5.sumDecimalRepresentation(list1, list2);
+    assertEquals(expectedList, result);
   }
 }

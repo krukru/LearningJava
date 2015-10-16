@@ -79,6 +79,43 @@ public class LinkedList<E> extends AbstractList<E> {
     internalAdd(index, node);
   }
 
+  public void addFirst(E element) {
+    LinkedListNode newNode = new LinkedListNode(element);
+    internalAdd(0, newNode);
+  }
+
+  public void addLast(E element) {
+    add(element);
+  }
+
+  public void removeFirst() {
+    if (root == null) {
+      throw new NoSuchElementException();
+    }
+    internalRemove(root);
+  }
+
+  public void removeLast() {
+    if (tail == null) {
+      throw new NoSuchElementException();
+    }
+    internalRemove(tail);
+  }
+
+  public E getFirst() {
+    if (root == null) {
+      throw new NoSuchElementException();
+    }
+    return root.element;
+  }
+
+  public E getLast() {
+    if (tail == null) {
+      throw new NoSuchElementException();
+    }
+    return tail.element;
+  }
+
   private void internalAdd(int index, LinkedListNode node) {
     final int indexOfLastElement = this.size;
     if (index > indexOfLastElement) {

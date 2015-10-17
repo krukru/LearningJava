@@ -23,11 +23,11 @@ public class AnimaleShelter {
   public Animal dequeueAny() {
     Animal result;
     if (dogShelter.size() == 0) {
-      result = dogShelter.getFirst().animal;
-      dogShelter.removeFirst();
-    } else if (catShelter.size() == 0) {
       result = catShelter.getFirst().animal;
       catShelter.removeFirst();
+    } else if (catShelter.size() == 0) {
+      result = dogShelter.getFirst().animal;
+      dogShelter.removeFirst();
     } else {
       ArrivalTimestamp dogArrival = dogShelter.getFirst();
       ArrivalTimestamp catArrival = catShelter.getFirst();

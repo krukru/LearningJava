@@ -1,4 +1,4 @@
-package kru.ctci.chapter3.proble.m6;
+package kru.ctci.chapter3.problem6;
 
 import kru.collections.Stack;
 

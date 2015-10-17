@@ -34,13 +34,13 @@ public class PlateStackTest {
       plateStack.push(i);
     }
     plateStack.popAtStack(0); /* popped 9 */
-    plateStack.popAtStack(1); /* popped 18 */
-    plateStack.popAtStack(2); /* popped 27 */
-    plateStack.popAtStack(3); /* popped 36 */
-    plateStack.popAtStack(4); /* popped 45 */
+    plateStack.popAtStack(1); /* popped 19 */
+    plateStack.popAtStack(2); /* popped 29 */
+    plateStack.popAtStack(3); /* popped 39 */
+    plateStack.popAtStack(4); /* popped 49 */
     assertEquals(95, plateStack.size());
     for (int i = 99; i >= 0; i--) {
-      if (i == 9 || i == 18 || i == 27 || i == 36 || i == 45) {
+      if (i == 9 || i == 19 || i == 29 || i == 39 || i == 49) {
         continue;
       }
       int num = plateStack.pop();

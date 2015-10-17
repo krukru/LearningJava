@@ -10,4 +10,8 @@ public class HanoiDisc {
   public int getWidth() {
     return width;
   }
+
+  public String toString() {
+    return String.valueOf(width);
+  }
 }

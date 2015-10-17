@@ -283,6 +283,29 @@ public class LinkedList<E> extends AbstractList<E> {
   }
 
   @Override
+  public boolean addAll(Collection<? extends E> collection) {
+    if (collection instanceof LinkedList) {
+      LinkedList<E> secondList = (LinkedList<E>) collection;
+      if (secondList.isEmpty() == false) {
+        if (root == null) {
+          this.root = secondList.root;
+          this.tail = secondList.tail;
+        } else {
+          tail.next = secondList.root;
+          secondList.root.prev = tail;
+          this.tail = secondList.tail;
+        }
+        this.size += secondList.size;
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return super.addAll(collection);
+    }
+  }
+
+  @Override
   public ListIterator<E> listIterator() {
     return new LinkedListIterator(this);
   }
@@ -354,8 +377,7 @@ public class LinkedList<E> extends AbstractList<E> {
         /* special case, tail requested */
         this.nextNode = null;
         this.previousNode = linkedList.tail;
-      }
-      else {
+      } else {
         this.nextNode = linkedList.root;
         this.previousNode = null;
         while (nextIndex != startingIndex) {

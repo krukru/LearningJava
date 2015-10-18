@@ -15,10 +15,10 @@ public class Problem1 {
     if (node == null) {
       return true;
     }
-    int leftSubtreeHeight = height(node.leftChild, canBeBalanced);
+    int leftSubtreeHeight = getBalanceHeight(node.leftChild, canBeBalanced);
     int rightSubtreeHeight;
     if (canBeBalanced.getValue()) {
-      rightSubtreeHeight = height(node.rightChild, canBeBalanced);
+      rightSubtreeHeight = getBalanceHeight(node.rightChild, canBeBalanced);
       canBeBalanced.setValue(Math.abs(leftSubtreeHeight - rightSubtreeHeight) <= 1);
       return canBeBalanced.getValue();
     } else {
@@ -26,11 +26,15 @@ public class Problem1 {
     }
   }
 
-  private int height(Node startingNode, Wrappable<Boolean> canBeBalanced) {
-    if (startingNode == null) {
+  private int getBalanceHeight(Node startingNode, Wrappable<Boolean> canBeBalanced) {
+    if (startingNode == null || canBeBalanced.getValue() == false) {
       return 0;
     }
-    return Math.max(height(startingNode.leftChild, canBeBalanced), height(startingNode
-        .rightChild, canBeBalanced)) + 1;
+    int leftHeight = getBalanceHeight(startingNode.leftChild, canBeBalanced);
+    int rightHeight = getBalanceHeight(startingNode.rightChild, canBeBalanced);
+    if (Math.abs(leftHeight - rightHeight) > 1) {
+      canBeBalanced.setValue(false);
+    }
+    return Math.max(leftHeight, rightHeight) + 1;
   }
 }

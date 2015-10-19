@@ -57,7 +57,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements Set<E> {
 
   @Override
   public Iterator<E> iterator() {
-    throw new NotImplementedException();
+    return new DfsIterator();
   }
 
   @Override
@@ -86,7 +86,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements Set<E> {
           return false;
         } else if (comparison < 0) {
           if (currentNode.leftChild == null) {
-            currentNode.leftChild = new Node<>(element);
+            currentNode.leftChild = new Node<>(currentNode, element);
             this.height = Math.max(this.height, newHeight);
             this.size += 1;
             return true;
@@ -95,7 +95,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements Set<E> {
           }
         } else {
           if (currentNode.rightChild == null) {
-            currentNode.rightChild = new Node<>(element);
+            currentNode.rightChild = new Node<>(currentNode, element);
             this.height = Math.max(this.height, newHeight);
             this.size += 1;
             return true;
@@ -149,4 +149,45 @@ public class BinarySearchTree<E extends Comparable<E>> implements Set<E> {
     root = null; /* should also remove pointer from internal nodes via iterator */
     size = 0;
   }
+
+  public class DfsIterator implements Iterator<E> {
+
+    private Node<E> nextNode;
+
+    public DfsIterator() {
+      this.nextNode = BinarySearchTree.this.root;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return nextNode != null;
+    }
+
+    @Override
+    public E next() {
+      E result = nextNode.data;
+      if (nextNode.leftChild != null) {
+        nextNode = nextNode.leftChild;
+      } else if (nextNode.rightChild != null) {
+        nextNode = nextNode.rightChild;
+      } else {
+        Node<E> prevNode = nextNode;
+        nextNode = nextNode.parent;
+        while (nextNode != null && nextNode.rightChild == prevNode) {
+          prevNode = nextNode;
+          nextNode = nextNode.parent;
+        }
+        if (nextNode != null) {
+          nextNode = nextNode.rightChild;
+        }
+      }
+      return result;
+    }
+
+    @Override
+    public void remove() {
+      throw new NotImplementedException();
+    }
+  }
+
 }

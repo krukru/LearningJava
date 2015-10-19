@@ -202,7 +202,7 @@ public class ArrayList<E> extends AbstractList<E> {
 
   @Override
   public List<E> subList(int fromIndex, int toIndex) {
-    ArrayList<E> subList = new ArrayList<>(toIndex - fromIndex);
+    ArrayList<E> subList = new ArrayList<>(toIndex - fromIndex + INITIAL_CAPACITY);
     subList.addAll(Arrays.asList(array).subList(fromIndex, toIndex));
     return subList;
   }

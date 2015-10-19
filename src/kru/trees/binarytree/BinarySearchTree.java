@@ -81,7 +81,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements Set<E> {
       Node<E> currentNode = root;
       while (true) {
         newHeight += 1;
-        int comparison = currentNode.data.compareTo(element);
+        int comparison = element.compareTo(currentNode.data);
         if (comparison == 0) {
           return false;
         } else if (comparison < 0) {

@@ -121,7 +121,16 @@ public class HashMap<K, V> implements Map<K, V> {
 
   @Override
   public Set<K> keySet() {
-    throw new NotImplementedException("Sorry");
+    /* Warning! Very poor implementation */
+    java.util.HashSet<K> keySet = new java.util.HashSet<>();
+    for (Bucket b : hashtable) {
+      if (b != null) {
+        for (Entry e : b) {
+          keySet.add(e.getKey());
+        }
+      }
+    }
+    return keySet;
   }
 
   @Override

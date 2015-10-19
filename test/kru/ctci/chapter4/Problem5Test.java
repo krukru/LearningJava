@@ -35,4 +35,13 @@ public class Problem5Test {
     tree.root.rightChild.rightChild = new Node<>(0);
     assertFalse(p5.isBinarySearchTree(tree));
   }
+
+  @Test
+  public void testIsBinarySearchTree_NegativeTest2() throws Exception {
+    BinaryTree<Integer> tree = new BinaryTree<>();
+    tree.root = new Node<>(10);
+    tree.root.leftChild = new Node<>(5);
+    tree.root.leftChild.rightChild = new Node<>(300);
+    assertFalse(p5.isBinarySearchTree(tree));
+  }
 }

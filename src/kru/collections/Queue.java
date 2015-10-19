@@ -50,6 +50,14 @@ public class Queue<E> extends AbstractList<E> implements java.util.Queue<E> {
     return true;
   }
 
+  public boolean enqueue(E element) {
+    return this.offer(element);
+  }
+
+  public E dequeue() {
+    return this.remove();
+  }
+
   @Override
   public E peek() {
     if (dataCollection.isEmpty()) {

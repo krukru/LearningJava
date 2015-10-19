@@ -1,4 +1,4 @@
-package kru;
+package kru.math;
 
 import org.junit.Test;
 

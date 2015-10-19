@@ -4,8 +4,8 @@ import kru.collections.HashSet;
 
 public class DirectedGraph {
 
-  private HashSet<Vertex> vertices;
-  private HashSet<DirectedEdge> directedEdges;
+  private HashSet<Vertex> vertices = new HashSet<>();
+  private HashSet<DirectedEdge> directedEdges = new HashSet<>();
 
   public Vertex addVertex() {
     return addVertex(String.format("Vertex %1$s", numberOfVertices() + 1));
@@ -15,6 +15,16 @@ public class DirectedGraph {
     Vertex v = new Vertex(vertexLabel);
     vertices.add(v);
     return v;
+  }
+
+  public HashSet<Vertex> getAdjecentVertices(Vertex fromVertex) {
+    HashSet<Vertex> result = new HashSet<>();
+    for (DirectedEdge edge : directedEdges) {
+      if (edge.getFromVertex() == fromVertex) {
+        result.add(edge.getToVertex());
+      }
+    }
+    return result;
   }
 
   public DirectedEdge connectVertices(Vertex fromVertex, Vertex toVertex) {

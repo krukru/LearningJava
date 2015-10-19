@@ -75,6 +75,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements Set<E> {
     if (root == null) {
       this.root = new Node<>(element);
       this.height = 1;
+      this.size = 1;
     } else {
       int newHeight = 1;
       Node<E> currentNode = root;
@@ -87,6 +88,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements Set<E> {
           if (currentNode.leftChild == null) {
             currentNode.leftChild = new Node<>(element);
             this.height = Math.max(this.height, newHeight);
+            this.size += 1;
             return true;
           } else {
             currentNode = currentNode.leftChild;
@@ -95,6 +97,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements Set<E> {
           if (currentNode.rightChild == null) {
             currentNode.rightChild = new Node<>(element);
             this.height = Math.max(this.height, newHeight);
+            this.size += 1;
             return true;
           } else {
             currentNode = currentNode.rightChild;

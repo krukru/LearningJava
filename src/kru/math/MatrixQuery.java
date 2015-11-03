@@ -1,10 +1,26 @@
 package kru.math;
 
-import java.awt.*;
-
 public class MatrixQuery {
 
-  public int sum(Point from, Point to) {
-    return 0;
+  private ArrayQuery[] rowQueries;
+
+  public MatrixQuery(int[][] matrix) {
+    this.rowQueries = new ArrayQuery[matrix.length];
+    for (int i = 0; i < matrix.length; i++) {
+      rowQueries[i] = new ArrayQuery(matrix[i]);
+    }
+  }
+
+  public int sum (int startX, int startY, int endX, int endY) {
+    //let's forget about validation for the time being TODO
+    //top left corner is 0,0
+    if (startY == endY) {
+      return rowQueries[startY].sum(startX, endX + 1); //we want to include the last element
+    }
+    int sum = 0;
+    for (int i = startY; i <= endY; i++) {
+      sum += rowQueries[i].sum(startX, endX + 1);
+    }
+    return sum;
   }
 }

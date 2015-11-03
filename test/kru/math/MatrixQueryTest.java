@@ -12,5 +12,6 @@ public class MatrixQueryTest {
     MatrixQuery matrixQuery = new MatrixQuery(matrix);
     assertEquals(45, matrixQuery.sum(0, 0, 2, 2));
     assertEquals(16, matrixQuery.sum(1, 0, 2, 1));
+    //nemoj nikad amendat pushan commit. pička materina eto šta se desi
   }
 }

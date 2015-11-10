@@ -12,6 +12,13 @@ public class GepettoTest {
   private Gepetto g = new Gepetto();
 
   @Test
+  public void basicTest() {
+    BitSuffixTree bst = new BitSuffixTree();
+    bst.addNumber(6);
+    assertEquals(6, Gepetto.numberOfPossibleCombinations(3, bst));
+  }
+
+  @Test
   public void testNumberOfPossibleCombinations() throws Exception {
     int[] mask = new int[]{1 << 17 | 1 << 10, 1 << 3 | 1 << 15, 1 << 14 | 1 << 13};
     Random rand = new Random();

@@ -3,7 +3,7 @@ package kru.honi.round2;
 import java.util.Scanner;
 
 public class Gepetto {
-	
+
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		int numberOfIngredients = scanner.nextInt();
@@ -39,6 +39,9 @@ class BitSuffixTree {
 	public BinaryTreeNode root = new BinaryTreeNode();
 
 	public boolean hasMatch(int number) {
+    if (number == 24577) {
+      System.out.println();
+    }
 		BinaryTreeNode currentNode = root;
 		while (number > 0) {
 			int rightMostBit = number & 1;
